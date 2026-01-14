@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+    <title>Xác nhận thông tin - P2P Lending</title>
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --bg-gray: #f9fafb;
+        }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-gray); }
+        .page__background { background: var(--bg-gray); }
+
+        .form-container {
+            padding: 20px;
+            padding-bottom: 80px;
+        }
+
+        .section-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin: 20px 0 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .input-card {
+            background: white;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .input-row {
+            margin-bottom: 16px;
+        }
+        .input-row:last-child { margin-bottom: 0; }
+
+        .label {
+            display: block;
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+        }
+
+        .value-input {
+            width: 100%;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 10px;
+            font-size: 15px;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .image-preview-row {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .image-thumb {
+            flex: 1;
+            height: 100px;
+            background: #e5e7eb;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: var(--text-secondary);
+            border: 1px dashed #d1d5db;
+        }
+
+        .bottom-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            padding: 16px 20px;
+            box-shadow: 0 -4px 12px rgba(0,0,0,0.05);
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn-secondary {
+            background: #f3f4f6;
+            color: var(--text-primary);
+            border-radius: 10px;
+            padding: 12px;
+            font-weight: 600;
+            flex: 1;
+            text-align: center;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+            border-radius: 10px;
+            padding: 12px;
+            font-weight: 600;
+            flex: 2;
+            text-align: center;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <ons-page>
+        <ons-toolbar>
+            <div class="left"><ons-back-button>Quay lại</ons-back-button></div>
+            <div class="center">Xác nhận thông tin</div>
+        </ons-toolbar>
+
+        <div class="content">
+            <div class="form-container">
+                <div class="image-preview-row">
+                    <div class="image-thumb">Mặt trước</div>
+                    <div class="image-thumb">Mặt sau</div>
+                </div>
+
+                <div class="section-title">Thông tin cá nhân</div>
+                <div class="input-card">
+                    <div class="input-row">
+                        <label class="label">Họ và tên</label>
+                        <input type="text" class="value-input" value="NGUYEN VAN A">
+                    </div>
+                    <div class="input-row">
+                        <label class="label">Số CCCD/CMND</label>
+                        <input type="text" class="value-input" value="001090012345">
+                    </div>
+                    <div class="input-row">
+                        <label class="label">Ngày sinh</label>
+                        <input type="date" class="value-input" value="1990-01-01">
+                    </div>
+                    <div class="input-row">
+                        <label class="label">Giới tính</label>
+                        <select class="value-input">
+                            <option value="Nam" selected>Nam</option>
+                            <option value="Nu">Nữ</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="section-title">Địa chỉ</div>
+                <div class="input-card">
+                    <div class="input-row">
+                        <label class="label">Nguyên quán</label>
+                        <input type="text" class="value-input" value="Hà Nội">
+                    </div>
+                    <div class="input-row">
+                        <label class="label">Địa chỉ thường trú</label>
+                        <input type="text" class="value-input" value="123 Đường ABC, Quận XYZ, Hà Nội">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bottom-bar">
+            <button class="btn-secondary" onclick="window.history.back()">Chụp lại</button>
+            <button class="btn-primary" onclick="window.location.href='12-ekyc-liveness.html'">Xác nhận</button>
+        </div>
+    </ons-page>
+    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+</body>
+</html>

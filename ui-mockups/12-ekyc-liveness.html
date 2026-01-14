@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+    <title>Xác thực khuôn mặt - P2P Lending</title>
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary-color: #2563eb; }
+        body { font-family: 'Inter', sans-serif; background: #000; }
+        .page__background { background: #000; }
+
+        .camera-overlay {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .instruction-bar {
+            margin-top: 60px;
+            background: rgba(0,0,0,0.7);
+            padding: 16px 24px;
+            border-radius: 30px;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            text-align: center;
+            z-index: 10;
+        }
+
+        .face-frame {
+            margin-top: 40px;
+            width: 280px;
+            height: 380px;
+            border: 4px solid var(--primary-color); /* Active color */
+            border-radius: 140px; /* Oval shape */
+            position: relative;
+            box-shadow: 0 0 0 1000px rgba(0,0,0,0.8); /* Darken outside */
+        }
+
+        .progress-ring {
+            position: absolute;
+            top: -10px; left: -10px; right: -10px; bottom: -10px;
+            border-radius: 150px;
+            border: 4px solid transparent;
+            border-top-color: #10b981; /* Success color */
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        .camera-controls {
+            position: absolute;
+            bottom: 40px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .btn-cancel {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <ons-page>
+        <div class="camera-overlay">
+            <div class="instruction-bar">
+                Nhìn thẳng vào camera
+            </div>
+
+            <div class="face-frame">
+                <!-- Simulated face detection area -->
+                <div class="progress-ring"></div>
+            </div>
+
+            <div class="camera-controls">
+                <button class="btn-cancel" onclick="history.back()">Hủy bỏ</button>
+            </div>
+        </div>
+    </ons-page>
+
+    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+    <script>
+        // Simulate liveness check process
+        const instructions = [
+            "Nhìn thẳng vào camera",
+            "Quay đầu sang trái",
+            "Quay đầu sang phải",
+            "Mỉm cười",
+            "Hoàn tất!"
+        ];
+
+        let step = 0;
+        const instructionEl = document.querySelector('.instruction-bar');
+
+        const interval = setInterval(() => {
+            step++;
+            if (step < instructions.length) {
+                instructionEl.textContent = instructions[step];
+                instructionEl.style.animation = 'none';
+                instructionEl.offsetHeight; /* trigger reflow */
+                instructionEl.style.animation = 'fadeIn 0.3s';
+            } else {
+                clearInterval(interval);
+                window.location.href = '13-ekyc-processing.html';
+            }
+        }, 1500);
+    </script>
+</body>
+</html>

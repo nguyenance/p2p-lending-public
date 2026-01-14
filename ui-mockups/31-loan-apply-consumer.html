@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+    <title>Đăng ký vay - P2P Lending</title>
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background: #f3f4f6; }
+        .page__background { background: #f3f4f6; }
+
+        .step-indicator {
+            background: white;
+            padding: 16px 20px;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .step {
+            width: 24px; height: 24px;
+            border-radius: 50%;
+            background: #e5e7eb;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .step.active { background: #2563eb; }
+        .step.done { background: #10b981; }
+
+        .form-section {
+            background: white;
+            padding: 20px;
+            margin-bottom: 12px;
+        }
+
+        .input-label { font-size: 13px; font-weight: 600; color: #374151; margin-bottom: 8px; display: block; }
+        .text-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 15px;
+            box-sizing: border-box;
+            margin-bottom: 16px;
+        }
+
+        .upload-box {
+            border: 2px dashed #d1d5db;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            color: #6b7280;
+            font-size: 13px;
+            margin-bottom: 16px;
+        }
+    </style>
+</head>
+<body>
+    <ons-page>
+        <ons-toolbar>
+            <div class="left"><ons-back-button>Hủy</ons-back-button></div>
+            <div class="center">Đăng ký vay tiêu dùng</div>
+        </ons-toolbar>
+
+        <div class="step-indicator">
+            <div class="step active">1</div>
+            <div class="step">2</div>
+            <div class="step">3</div>
+            <div class="step">4</div>
+        </div>
+
+        <div class="content">
+            <div class="form-section">
+                <h3 style="margin-top: 0; font-size: 16px;">Thông tin khoản vay</h3>
+
+                <label class="input-label">Mục đích vay</label>
+                <ons-select style="width: 100%; margin-bottom: 16px;">
+                    <option value="shopping">Mua sắm tiêu dùng</option>
+                    <option value="medical">Khám chữa bệnh</option>
+                    <option value="travel">Du lịch</option>
+                    <option value="repair">Sửa chữa nhà cửa</option>
+                </ons-select>
+
+                <label class="input-label">Số tiền đề nghị (VNĐ)</label>
+                <input type="number" class="text-input" value="10000000">
+
+                <label class="input-label">Thời hạn (Tháng)</label>
+                <ons-select style="width: 100%; margin-bottom: 16px;">
+                    <option value="6">6 tháng</option>
+                    <option value="12" selected>12 tháng</option>
+                    <option value="24">24 tháng</option>
+                </ons-select>
+            </div>
+
+            <div class="form-section">
+                <h3 style="margin-top: 0; font-size: 16px;">Thông tin thu nhập</h3>
+                <label class="input-label">Nghề nghiệp hiện tại</label>
+                <input type="text" class="text-input" placeholder="Ví dụ: Nhân viên văn phòng">
+
+                <label class="input-label">Tên công ty</label>
+                <input type="text" class="text-input">
+
+                <label class="input-label">Thu nhập hàng tháng (VNĐ)</label>
+                <input type="number" class="text-input">
+
+                <label class="input-label">Minh chứng thu nhập (Sao kê/Bảng lương)</label>
+                <div class="upload-box">
+                    <div>📁</div>
+                    <div>Nhấn để tải lên ảnh hoặc PDF</div>
+                </div>
+            </div>
+
+            <div style="padding: 0 20px 20px;">
+                <ons-button modifier="large" style="background: #2563eb; border-radius: 8px;">Tiếp tục</ons-button>
+            </div>
+        </div>
+    </ons-page>
+    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+</body>
+</html>

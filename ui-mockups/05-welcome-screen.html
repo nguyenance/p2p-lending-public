@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Chào mừng - P2P Lending</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --primary-dark: #1e40af;
+        }
+
+        * {
+            font-family: 'Inter', sans-serif;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .welcome-container {
+            max-width: 480px;
+            margin: 0 auto;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        .carousel-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 40px 0;
+        }
+
+        .slide {
+            text-align: center;
+            display: none;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        .slide-icon {
+            font-size: 80px;
+            margin-bottom: 24px;
+        }
+
+        .slide-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: white;
+            margin: 0 0 12px;
+        }
+
+        .slide-description {
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0 20px;
+        }
+
+        .dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin: 32px 0;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            width: 24px;
+            border-radius: 4px;
+            background: white;
+        }
+
+        .actions {
+            padding-bottom: 40px;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            min-height: 48px;
+            transition: all 0.3s ease;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--primary-color);
+            margin-bottom: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary:active {
+            transform: scale(0.98);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .skip-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="welcome-container">
+        <button class="skip-button" onclick="window.location.href='01-login-screen.html'">Bỏ qua</button>
+
+        <div class="carousel-section">
+            <div class="slide active" id="slide1">
+                <div class="slide-icon">🚀</div>
+                <h2 class="slide-title">Cho vay & Đầu tư dễ dàng</h2>
+                <p class="slide-description">
+                    Kết nối người vay và nhà đầu tư trực tiếp,
+                    giúp bạn tiếp cận nguồn vốn nhanh chóng hoặc
+                    tăng lợi nhuận từ khoản tiết kiệm
+                </p>
+            </div>
+
+            <div class="slide" id="slide2">
+                <div class="slide-icon">🔒</div>
+                <h2 class="slide-title">Bảo mật tuyệt đối</h2>
+                <p class="slide-description">
+                    Thông tin cá nhân được mã hóa và bảo vệ
+                    bằng công nghệ blockchain. eKYC nhanh chóng
+                    với xác thực sinh trắc học
+                </p>
+            </div>
+
+            <div class="slide" id="slide3">
+                <div class="slide-icon">💰</div>
+                <h2 class="slide-title">Lãi suất minh bạch</h2>
+                <p class="slide-description">
+                    Không phí ẩn, lãi suất rõ ràng từ 15-20%
+                    cho người vay. Lợi nhuận hấp dẫn cho nhà đầu tư
+                    với đa dạng sản phẩm
+                </p>
+            </div>
+
+            <div class="slide" id="slide4">
+                <div class="slide-icon">⚡</div>
+                <h2 class="slide-title">Giải ngân siêu tốc</h2>
+                <p class="slide-description">
+                    Duyệt khoản vay trong 24 giờ,
+                    giải ngân ngay sau khi ký hợp đồng điện tử.
+                    Đơn giản, nhanh chóng, tiện lợi
+                </p>
+            </div>
+
+            <div class="dots">
+                <div class="dot active" data-slide="1"></div>
+                <div class="dot" data-slide="2"></div>
+                <div class="dot" data-slide="3"></div>
+                <div class="dot" data-slide="4"></div>
+            </div>
+        </div>
+
+        <div class="actions">
+            <button class="btn btn-primary" onclick="window.location.href='02-registration-screen.html'">
+                Đăng ký ngay
+            </button>
+            <button class="btn btn-secondary" onclick="window.location.href='01-login-screen.html'">
+                Đăng nhập
+            </button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 4;
+        let autoPlayInterval;
+
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.dot');
+
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+
+            document.getElementById(`slide${n}`).classList.add('active');
+            dots[n - 1].classList.add('active');
+            currentSlide = n;
+        }
+
+        function nextSlide() {
+            let next = currentSlide + 1;
+            if (next > totalSlides) next = 1;
+            showSlide(next);
+        }
+
+        // Auto-play carousel
+        autoPlayInterval = setInterval(nextSlide, 4000);
+
+        // Manual dot navigation
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                clearInterval(autoPlayInterval);
+                showSlide(index + 1);
+                autoPlayInterval = setInterval(nextSlide, 4000);
+            });
+        });
+
+        // Swipe support (basic)
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.querySelector('.carousel-section').addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.querySelector('.carousel-section').addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) {
+                nextSlide();
+            }
+            if (touchEndX > touchStartX + 50) {
+                let prev = currentSlide - 1;
+                if (prev < 1) prev = totalSlides;
+                showSlide(prev);
+            }
+        }
+    </script>
+</body>
+
+</html>

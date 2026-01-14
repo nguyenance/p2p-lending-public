@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+    <title>Chi tiết đầu tư - P2P Lending</title>
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background: #f3f4f6; }
+        .page__background { background: #f3f4f6; }
+
+        .hero-card {
+            background: white;
+            padding: 24px 20px;
+            text-align: center;
+        }
+
+        .big-rate { font-size: 32px; font-weight: 700; color: #10b981; margin: 12px 0; }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            padding: 20px;
+        }
+
+        .info-box {
+            background: white;
+            padding: 16px;
+            border-radius: 12px;
+        }
+
+        .box-label { font-size: 12px; color: #6b7280; }
+        .box-val { font-size: 15px; font-weight: 600; color: #1f2937; }
+
+        .tab-section {
+            background: white;
+            margin-top: 12px;
+            padding: 20px;
+        }
+
+        .doc-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .footer-action {
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            background: white;
+            padding: 16px 20px;
+            box-shadow: 0 -4px 12px rgba(0,0,0,0.05);
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <ons-page>
+        <ons-toolbar>
+            <div class="left"><ons-back-button>Quay lại</ons-back-button></div>
+            <div class="center">#LOAN-1029</div>
+        </ons-toolbar>
+
+        <div class="content" style="padding-bottom: 80px;">
+            <div class="hero-card">
+                <div style="font-size: 16px; font-weight: 600;">Vay tiêu dùng mua xe máy</div>
+                <div class="big-rate">15% <span style="font-size: 14px; color: #6b7280; font-weight: 400;">/năm</span></div>
+                <div style="display: flex; justify-content: center; gap: 8px;">
+                    <span style="background: #10b981; color: white; padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: 600;">Hạng A</span>
+                    <span style="background: #eff6ff; color: #2563eb; padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: 600;">Tín chấp</span>
+                </div>
+            </div>
+
+            <div class="info-grid">
+                <div class="info-box">
+                    <div class="box-label">Thời hạn</div>
+                    <div class="box-val">12 tháng</div>
+                </div>
+                <div class="info-box">
+                    <div class="box-label">Số tiền cần gọi</div>
+                    <div class="box-val">20.000.000đ</div>
+                </div>
+                <div class="info-box">
+                    <div class="box-label">Đã gọi được</div>
+                    <div class="box-val" style="color: #2563eb;">12.000.000đ (60%)</div>
+                </div>
+                <div class="info-box">
+                    <div class="box-label">Còn lại</div>
+                    <div class="box-val">8.000.000đ</div>
+                </div>
+            </div>
+
+            <div class="tab-section">
+                <h3 style="font-size: 15px; margin-top: 0;">Thông tin người vay</h3>
+                <p style="font-size: 14px; color: #4b5563; line-height: 1.5;">
+                    Khách hàng là Nhân viên văn phòng tại Hà Nội. Thu nhập ổn định 15 triệu/tháng.
+                    Điểm tín dụng CIC Hạng 1 (Rất tốt).
+                </p>
+
+                <h3 style="font-size: 15px;">Hồ sơ đã xác thực</h3>
+                <div class="doc-item">
+                    <span>✅</span> <span style="margin-left: 8px; font-size: 14px;">CCCD gắn chip</span>
+                </div>
+                <div class="doc-item">
+                    <span>✅</span> <span style="margin-left: 8px; font-size: 14px;">Hợp đồng lao động</span>
+                </div>
+                <div class="doc-item">
+                    <span>✅</span> <span style="margin-left: 8px; font-size: 14px;">Sao kê lương 3 tháng</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-action">
+            <div style="flex: 1;">
+                <div style="font-size: 12px; color: #6b7280;">Lợi nhuận dự kiến</div>
+                <div style="font-weight: 700; color: #059669;">2.500.000đ</div>
+            </div>
+            <ons-button style="flex: 2; background: #2563eb; border-radius: 8px;" onclick="window.location.href='34-invest-confirm.html'">Đầu tư ngay</ons-button>
+        </div>
+    </ons-page>
+    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+</body>
+</html>

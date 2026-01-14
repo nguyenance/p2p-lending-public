@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+    <title>Cài đặt - P2P Lending</title>
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background: #f3f4f6; }
+        .page__background { background: #f3f4f6; }
+    </style>
+</head>
+<body>
+    <ons-page>
+        <ons-toolbar>
+            <div class="left"><ons-back-button>Quay lại</ons-back-button></div>
+            <div class="center">Cài đặt</div>
+        </ons-toolbar>
+
+        <div class="content">
+            <ons-list>
+                <ons-list-header>Thông báo</ons-list-header>
+                <ons-list-item>
+                    <div class="center">Thông báo đẩy (Push)</div>
+                    <div class="right"><ons-switch checked></ons-switch></div>
+                </ons-list-item>
+                <ons-list-item>
+                    <div class="center">Email tin tức</div>
+                    <div class="right"><ons-switch></ons-switch></div>
+                </ons-list-item>
+
+                <ons-list-header>Giao diện</ons-list-header>
+                <ons-list-item>
+                    <div class="center">Ngôn ngữ</div>
+                    <div class="right" style="color: #6b7280; font-size: 14px;">Tiếng Việt</div>
+                </ons-list-item>
+                <ons-list-item>
+                    <div class="center">Chế độ tối (Dark Mode)</div>
+                    <div class="right"><ons-switch></ons-switch></div>
+                </ons-list-item>
+
+                <ons-list-header>Khác</ons-list-header>
+                <ons-list-item tappable>
+                    <div class="center" style="color: #dc2626;">Xóa bộ nhớ đệm</div>
+                </ons-list-item>
+            </ons-list>
+        </div>
+    </ons-page>
+    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Thiết lập sinh trắc học - P2P Lending</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --primary-dark: #1e40af;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --bg-gray: #f9fafb;
+        }
+
+        * {
+            font-family: 'Inter', sans-serif;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        .header-section {
+            text-align: center;
+            padding: 40px 0 24px;
+            flex-shrink: 0;
+        }
+
+        .logo {
+            width: 64px;
+            height: 64px;
+            background: white;
+            border-radius: 16px;
+            margin: 0 auto 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo-text {
+            font-size: 26px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .app-title {
+            color: white;
+            font-size: 24px;
+            font-weight: 700;
+            margin: 0 0 6px;
+        }
+
+        .app-subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 14px;
+            margin: 0;
+        }
+
+        .form-card {
+            background: white;
+            border-radius: 20px;
+            padding: 24px 20px;
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .biometric-icon {
+            font-size: 80px;
+            text-align: center;
+            margin: 24px 0;
+            animation: pulse 2s infinite;
+        }
+
+        .form-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 0 0 6px;
+            text-align: center;
+        }
+
+        .form-subtitle {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin: 0 0 24px;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        .benefits-list {
+            margin: 24px 0;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 16px;
+            padding: 12px;
+            background: var(--bg-gray);
+            border-radius: 10px;
+        }
+
+        .benefit-icon {
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .benefit-content {
+            flex: 1;
+        }
+
+        .benefit-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 0 0 4px;
+        }
+
+        .benefit-text {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            min-height: 48px;
+            transition: all 0.3s ease;
+            -webkit-tap-highlight-color: transparent;
+            margin-bottom: 12px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            color: white;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn-primary:active {
+            transform: scale(0.98);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--text-secondary);
+            border: 2px solid var(--bg-gray);
+        }
+
+        .footer-text {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 11px;
+            padding: 12px 0 20px;
+            flex-shrink: 0;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <ons-page>
+        <div class="container">
+            <div>
+                <div class="header-section">
+                    <div class="logo">
+                        <div class="logo-text">P2P</div>
+                    </div>
+                    <h1 class="app-title">Sinh trắc học</h1>
+                    <p class="app-subtitle">Đăng nhập nhanh và bảo mật</p>
+                </div>
+
+                <div class="form-card">
+                    <div class="biometric-icon">🔐</div>
+
+                    <h2 class="form-title">Kích hoạt đăng nhập sinh trắc học</h2>
+                    <p class="form-subtitle">
+                        Sử dụng vân tay hoặc Face ID để đăng nhập nhanh hơn
+                        và an toàn hơn
+                    </p>
+
+                    <div class="benefits-list">
+                        <div class="benefit-item">
+                            <div class="benefit-icon">⚡</div>
+                            <div class="benefit-content">
+                                <div class="benefit-title">Đăng nhập siêu nhanh</div>
+                                <div class="benefit-text">Chạm vân tay hoặc nhìn vào màn hình để đăng nhập chỉ trong 1
+                                    giây</div>
+                            </div>
+                        </div>
+
+                        <div class="benefit-item">
+                            <div class="benefit-icon">🔒</div>
+                            <div class="benefit-content">
+                                <div class="benefit-title">Bảo mật tối đa</div>
+                                <div class="benefit-text">Dữ liệu sinh trắc học được lưu trữ an toàn trên thiết bị của
+                                    bạn</div>
+                            </div>
+                        </div>
+
+                        <div class="benefit-item">
+                            <div class="benefit-icon">✨</div>
+                            <div class="benefit-content">
+                                <div class="benefit-title">Tiện lợi</div>
+                                <div class="benefit-text">Không cần nhớ mật khẩu phức tạp, sử dụng sinh trắc học mọi lúc
+                                    mọi nơi</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary" id="enableBtn">
+                        Kích hoạt ngay
+                    </button>
+
+                    <button class="btn btn-secondary" id="skipBtn">
+                        Bỏ qua, tôi sẽ kích hoạt sau
+                    </button>
+                </div>
+            </div>
+
+            <div class="footer-text">
+                © 2026 P2P Lending Platform
+            </div>
+        </div>
+    </ons-page>
+
+    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+    <script>
+        document.getElementById('enableBtn').addEventListener('click', function () {
+            ons.notification.confirm({
+                message: 'Vui lòng sử dụng vân tay hoặc Face ID để kích hoạt',
+                title: 'Xác thực sinh trắc học',
+                buttonLabels: ['Hủy', 'Tiếp tục'],
+                callback: function (index) {
+                    if (index === 1) {
+                        // Simulate biometric authentication
+                        ons.notification.toast('Đang xác thực...', { timeout: 1500 });
+
+                        setTimeout(() => {
+                            ons.notification.alert({
+                                message: 'Sinh trắc học đã được kích hoạt thành công! Bạn có thể sử dụng để đăng nhập từ lần sau.',
+                                title: 'Thành công! 🎉',
+                                callback: function () {
+                                    // Navigate to dashboard
+                                    window.location.href = '01-login-screen.html';
+                                }
+                            });
+                        }, 1500);
+                    }
+                }
+            });
+        });
+
+        document.getElementById('skipBtn').addEventListener('click', function () {
+            ons.notification.toast('Bạn có thể kích hoạt sau trong Cài đặt', { timeout: 2000 });
+
+            setTimeout(() => {
+                // Navigate to dashboard
+                window.location.href = '01-login-screen.html';
+            }, 2000);
+        });
+    </script>
+</body>
+
+</html>

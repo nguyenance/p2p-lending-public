@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+    <title>Đang xử lý - P2P Lending</title>
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary-color: #2563eb; }
+        body { font-family: 'Inter', sans-serif; background: white; }
+        .page__background { background: white; }
+
+        .processing-container {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .spinner-container {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 32px;
+            position: relative;
+        }
+
+        .spinner {
+            width: 100%;
+            height: 100%;
+            border: 4px solid #e5e7eb;
+            border-top-color: var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        .success-icon {
+            font-size: 64px;
+            display: none;
+            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .status-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+
+        .status-desc {
+            font-size: 15px;
+            color: #6b7280;
+            max-width: 300px;
+            line-height: 1.5;
+        }
+
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        @keyframes popIn { from { transform: scale(0); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    </style>
+</head>
+<body>
+    <ons-page>
+        <div class="processing-container">
+            <div class="spinner-container" id="spinnerArea">
+                <div class="spinner"></div>
+            </div>
+            <div class="success-icon" id="successIcon">✅</div>
+
+            <h2 class="status-title" id="statusTitle">Đang xử lý dữ liệu...</h2>
+            <p class="status-desc" id="statusDesc">
+                Hệ thống đang kiểm tra thông tin của bạn. Vui lòng không tắt ứng dụng.
+            </p>
+        </div>
+    </ons-page>
+
+    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+    <script>
+        // Simulate processing steps
+        const steps = [
+            { title: "Đang tải ảnh lên...", desc: "Đang tải ảnh giấy tờ và video xác thực." },
+            { title: "Đang phân tích...", desc: "Công nghệ AI đang so khớp khuôn mặt." },
+            { title: "Xác thực thành công!", desc: "Hồ sơ của bạn đã được duyệt. Đang chuyển hướng..." }
+        ];
+
+        let currentStep = 0;
+        const titleEl = document.getElementById('statusTitle');
+        const descEl = document.getElementById('statusDesc');
+        const spinnerArea = document.getElementById('spinnerArea');
+        const successIcon = document.getElementById('successIcon');
+
+        function nextStep() {
+            if (currentStep < 2) {
+                currentStep++;
+                titleEl.textContent = steps[currentStep].title;
+                descEl.textContent = steps[currentStep].desc;
+                setTimeout(nextStep, 2000);
+            } else {
+                // Success state
+                titleEl.textContent = steps[2].title;
+                descEl.textContent = steps[2].desc;
+                spinnerArea.style.display = 'none';
+                successIcon.style.display = 'block';
+
+                setTimeout(() => {
+                    // Navigate to Home
+                    window.location.href = '14-home-borrower.html';
+                }, 2000);
+            }
+        }
+
+        setTimeout(nextStep, 2000);
+    </script>
+</body>
+</html>

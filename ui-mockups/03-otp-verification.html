@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+    <title>Xác thực OTP - P2P Lending</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --primary-dark: #1e40af;
+            --secondary-color: #10b981;
+            --error-color: #ef4444;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --bg-gray: #f9fafb;
+            --border-color: #e5e7eb;
+        }
+
+        * {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            box-sizing: border-box;
+        }
+
+        html {
+            height: 100%;
+            overflow-x: hidden;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100%;
+            overflow-x: hidden;
+        }
+
+        .container {
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        .header-section {
+            text-align: center;
+            padding: 40px 0 24px;
+            animation: fadeInDown 0.6s ease-out;
+            flex-shrink: 0;
+        }
+
+        .back-button {
+            position: absolute;
+            left: 20px;
+            top: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 10px;
+            padding: 10px 12px;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .logo {
+            width: 64px;
+            height: 64px;
+            background: white;
+            border-radius: 16px;
+            margin: 0 auto 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo-text {
+            font-size: 26px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .app-title {
+            color: white;
+            font-size: 24px;
+            font-weight: 700;
+            margin: 0 0 6px;
+        }
+
+        .app-subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 14px;
+            margin: 0;
+        }
+
+        .form-card {
+            background: white;
+            border-radius: 20px;
+            padding: 24px 20px;
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+            animation: fadeInUp 0.6s ease-out 0.2s backwards;
+            flex-grow: 1;
+        }
+
+        .form-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 0 0 6px;
+            text-align: center;
+        }
+
+        .form-subtitle {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin: 0 0 24px;
+            text-align: center;
+        }
+
+        .phone-display {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .otp-inputs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 24px 0;
+        }
+
+        .otp-input {
+            width: 48px;
+            height: 52px;
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            font-size: 24px;
+            font-weight: 600;
+            text-align: center;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+            appearance: none;
+            -webkit-appearance: none;
+        }
+
+        .otp-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+        }
+
+        .otp-input.filled {
+            border-color: var(--secondary-color);
+            background: rgba(16, 185, 129, 0.05);
+        }
+
+        .otp-input.error {
+            border-color: var(--error-color);
+            background: rgba(239, 68, 68, 0.05);
+        }
+
+        .timer-section {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .timer {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+        }
+
+        .timer.warning {
+            color: var(--error-color);
+            animation: pulse 1s infinite;
+        }
+
+        .timer-text {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .resend-section {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .resend-button {
+            background: none;
+            border: none;
+            color: var(--primary-color);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: underline;
+            padding: 8px;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .resend-button:disabled {
+            color: var(--text-secondary);
+            text-decoration: none;
+            cursor: not-allowed;
+        }
+
+        .verify-button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+            transition: all 0.3s ease;
+            margin-top: 24px;
+            min-height: 48px;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .verify-button:active {
+            transform: scale(0.98);
+        }
+
+        .verify-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .error-message {
+            color: var(--error-color);
+            font-size: 13px;
+            text-align: center;
+            margin-top: 12px;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        .footer-text {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 11px;
+            padding: 12px 0 20px;
+            flex-shrink: 0;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.6;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <ons-page>
+        <div class="container">
+            <button class="back-button" onclick="history.back()">←</button>
+
+            <div>
+                <div class="header-section">
+                    <div class="logo">
+                        <div class="logo-text">P2P</div>
+                    </div>
+                    <h1 class="app-title">Xác thực OTP</h1>
+                    <p class="app-subtitle">Nhập mã đã được gửi đến <span class="phone-display">0912 345 678</span></p>
+                </div>
+
+                <div class="form-card">
+                    <h2 class="form-title">Mã xác thực</h2>
+                    <p class="form-subtitle">Vui lòng nhập 6 chữ số</p>
+
+                    <div class="otp-inputs">
+                        <input type="text" class="otp-input" maxlength="1" id="otp1" autocomplete="off">
+                        <input type="text" class="otp-input" maxlength="1" id="otp2" autocomplete="off">
+                        <input type="text" class="otp-input" maxlength="1" id="otp3" autocomplete="off">
+                        <input type="text" class="otp-input" maxlength="1" id="otp4" autocomplete="off">
+                        <input type="text" class="otp-input" maxlength="1" id="otp5" autocomplete="off">
+                        <input type="text" class="otp-input" maxlength="1" id="otp6" autocomplete="off">
+                    </div>
+
+                    <div class="timer-section">
+                        <div class="timer" id="timer">05:00</div>
+                        <div class="timer-text">Thời gian còn lại</div>
+                    </div>
+
+                    <div class="resend-section">
+                        <button class="resend-button" id="resendButton" disabled>
+                            Gửi lại mã sau <span id="resendTimer">60</span>s
+                        </button>
+                    </div>
+
+                    <div class="error-message" id="errorMessage">
+                        Mã OTP không đúng. Vui lòng thử lại.
+                    </div>
+
+                    <button class="verify-button" id="verifyButton" disabled>
+                        Xác nhận
+                    </button>
+                </div>
+            </div>
+
+            <div class="footer-text">
+                © 2026 P2P Lending Platform
+            </div>
+        </div>
+    </ons-page>
+
+    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+    <script>
+        const otpInputs = document.querySelectorAll('.otp-input');
+        const verifyButton = document.getElementById('verifyButton');
+        const errorMessage = document.getElementById('errorMessage');
+        const timerDisplay = document.getElementById('timer');
+        const resendButton = document.getElementById('resendButton');
+        const resendTimerSpan = document.getElementById('resendTimer');
+
+        let timeLeft = 300; // 5 minutes в секундах
+        let resendTimeLeft = 60; // 60 seconds
+
+        // OTP input handling
+        otpInputs.forEach((input, index) => {
+            input.addEventListener('input', function (e) {
+                const value = e.target.value;
+
+                // Only allow numbers
+                if (!/^\d*$/.test(value)) {
+                    e.target.value = '';
+                    return;
+                }
+
+                // Mark as filled
+                if (value) {
+                    e.target.classList.add('filled');
+                    e.target.classList.remove('error');
+
+                    // Move to next input
+                    if (index < otpInputs.length - 1) {
+                        otpInputs[index + 1].focus();
+                    }
+                } else {
+                    e.target.classList.remove('filled');
+                }
+
+                // Check if all inputs are filled
+                checkAllFilled();
+            });
+
+            // Handle backspace
+            input.addEventListener('keydown', function (e) {
+                if (e.key === 'Backspace' && !e.target.value && index > 0) {
+                    otpInputs[index - 1].focus();
+                    otpInputs[index - 1].value = '';
+                    otpInputs[index - 1].classList.remove('filled');
+                    checkAllFilled();
+                }
+            });
+
+            // Handle paste
+            input.addEventListener('paste', function (e) {
+                e.preventDefault();
+                const pastedData = e.clipboardData.getData('text').slice(0, 6);
+
+                if (/^\d{6}$/.test(pastedData)) {
+                    pastedData.split('').forEach((char, i) => {
+                        if (otpInputs[i]) {
+                            otpInputs[i].value = char;
+                            otpInputs[i].classList.add('filled');
+                        }
+                    });
+                    checkAllFilled();
+                    otpInputs[5].focus();
+                }
+            });
+        });
+
+        function checkAllFilled() {
+            const allFilled = Array.from(otpInputs).every(input => input.value.length === 1);
+            verifyButton.disabled = !allFilled;
+            errorMessage.classList.remove('show');
+        }
+
+        function getOTPValue() {
+            return Array.from(otpInputs).map(input => input.value).join('');
+        }
+
+        // Timer countdown
+        const timerInterval = setInterval(() => {
+            timeLeft--;
+
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            timerDisplay.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+
+            if (timeLeft <= 60) {
+                timerDisplay.classList.add('warning');
+            }
+
+            if (timeLeft <= 0) {
+                clearInterval(timerInterval);
+                ons.notification.alert({
+                    message: 'Mã OTP đã hết hạn. Vui lòng gửi lại mã mới.',
+                    title: 'Hết thời gian'
+                });
+            }
+        }, 1000);
+
+        // Resend timer
+        const resendInterval = setInterval(() => {
+            resendTimeLeft--;
+            resendTimerSpan.textContent = resendTimeLeft;
+
+            if (resendTimeLeft <= 0) {
+                clearInterval(resendInterval);
+                resendButton.disabled = false;
+                resendButton.textContent = 'Gửi lại mã';
+            }
+        }, 1000);
+
+        // Resend OTP
+        resendButton.addEventListener('click', function () {
+            ons.notification.toast('Đang gửi lại mã OTP...', { timeout: 2000 });
+
+            setTimeout(() => {
+                ons.notification.toast('Mã OTP mới đã được gửi!', { timeout: 2000 });
+
+                // Reset timers
+                timeLeft = 300;
+                resendTimeLeft = 60;
+                resendButton.disabled = true;
+                resendButton.innerHTML = 'Gửi lại mã sau <span id="resendTimer">60</span>s';
+                timerDisplay.classList.remove('warning');
+
+                // Clear inputs
+                otpInputs.forEach(input => {
+                    input.value = '';
+                    input.classList.remove('filled', 'error');
+                });
+                otpInputs[0].focus();
+            }, 2000);
+        });
+
+        // Verify OTP
+        verifyButton.addEventListener('click', function () {
+            const otp = getOTPValue();
+
+            ons.notification.toast('Đang xác thực...', { timeout: 1500 });
+
+            // Simulate API call
+            setTimeout(() => {
+                // For demo, accept "123456" as valid
+                if (otp === '123456') {
+                    ons.notification.toast('Xác thực thành công!', { timeout: 2000 });
+                    // Navigate to create password screen
+                    // window.location.href = '04-create-password.html';
+                } else {
+                    errorMessage.classList.add('show');
+                    otpInputs.forEach(input => {
+                        input.classList.add('error');
+                        input.classList.remove('filled');
+                    });
+                    otpInputs[0].focus();
+                }
+            }, 1500);
+        });
+
+        // Auto-focus first input
+        otpInputs[0].focus();
+    </script>
+</body>
+
+</html>

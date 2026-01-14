@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+    <title>Trạng thái eKYC - P2P Lending</title>
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background: #f3f4f6; }
+        .page__background { background: #f3f4f6; }
+
+        .status-card {
+            background: white;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 12px;
+        }
+
+        .status-icon {
+            font-size: 64px;
+            margin-bottom: 16px;
+        }
+
+        .status-badge {
+            display: inline-block;
+            background: #ecfdf5;
+            color: #059669;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        .info-card {
+            background: white;
+            padding: 20px;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+        .info-row:last-child { border: none; }
+
+        .label { color: #6b7280; font-size: 14px; }
+        .val { font-weight: 600; font-size: 14px; }
+    </style>
+</head>
+<body>
+    <ons-page>
+        <ons-toolbar>
+            <div class="left"><ons-back-button>Quay lại</ons-back-button></div>
+            <div class="center">Xác thực danh tính</div>
+        </ons-toolbar>
+
+        <div class="content">
+            <div class="status-card">
+                <div class="status-icon">✅</div>
+                <div class="status-badge">Đã xác thực</div>
+                <p style="margin: 0; color: #6b7280; font-size: 14px;">
+                    Tài khoản của bạn đã được xác thực thành công.
+                    Bạn có thể sử dụng đầy đủ các tính năng.
+                </p>
+            </div>
+
+            <div class="info-card">
+                <div class="info-row">
+                    <span class="label">Loại giấy tờ</span>
+                    <span class="val">CCCD gắn chip</span>
+                </div>
+                <div class="info-row">
+                    <span class="label">Số giấy tờ</span>
+                    <span class="val">001090******</span>
+                </div>
+                <div class="info-row">
+                    <span class="label">Ngày xác thực</span>
+                    <span class="val">14/01/2026</span>
+                </div>
+                <div class="info-row">
+                    <span class="label">Phương thức</span>
+                    <span class="val">eKYC Video Call</span>
+                </div>
+            </div>
+        </div>
+    </ons-page>
+    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+    <title>Xác thực eKYC - P2P Lending</title>
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+        }
+        body { font-family: 'Inter', sans-serif; background: #f3f4f6; }
+        .page__background { background: #f3f4f6; }
+
+        .ekyc-intro-card {
+            background: white;
+            margin: 20px;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .illustration {
+            width: 120px;
+            height: 120px;
+            background: #e0e7ff;
+            border-radius: 50%;
+            margin: 0 auto 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+        }
+
+        .title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            line-height: 1.5;
+        }
+
+        .steps-container {
+            text-align: left;
+            margin-bottom: 32px;
+        }
+
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .step-number {
+            width: 28px;
+            height: 28px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+            margin-right: 16px;
+            flex-shrink: 0;
+        }
+
+        .step-content h4 {
+            margin: 0 0 4px;
+            font-size: 15px;
+            color: var(--text-primary);
+        }
+
+        .step-content p {
+            margin: 0;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+            border-radius: 10px;
+            padding: 14px;
+            font-weight: 600;
+        }
+
+        .toolbar { background: transparent; box-shadow: none; }
+        .toolbar__title { color: var(--text-primary); font-weight: 700; }
+        .back-button__icon { fill: var(--text-primary); }
+    </style>
+</head>
+<body>
+    <ons-page>
+        <ons-toolbar>
+            <div class="left"><ons-back-button>Quay lại</ons-back-button></div>
+            <div class="center">Xác thực danh tính</div>
+        </ons-toolbar>
+
+        <div class="content">
+            <div class="ekyc-intro-card">
+                <div class="illustration">🆔</div>
+                <h2 class="title">Xác minh danh tính (eKYC)</h2>
+                <p class="subtitle">
+                    Để đảm bảo an toàn và tuân thủ quy định pháp luật,
+                    vui lòng hoàn thành xác minh danh tính để bắt đầu giao dịch.
+                </p>
+
+                <div class="steps-container">
+                    <div class="step-item">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Chụp ảnh giấy tờ tùy thân</h4>
+                            <p>Sử dụng CCCD hoặc CMND còn hiệu lực</p>
+                        </div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Xác thực khuôn mặt</h4>
+                            <p>Quay video ngắn để xác thực người thật</p>
+                        </div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Kiểm tra thông tin</h4>
+                            <p>Xác nhận lại thông tin đã trích xuất</p>
+                        </div>
+                    </div>
+                </div>
+
+                <ons-button class="btn-primary" modifier="large" onclick="window.location.href='09-ekyc-id-front.html'">
+                    Bắt đầu ngay
+                </ons-button>
+            </div>
+        </div>
+    </ons-page>
+    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+</body>
+</html>

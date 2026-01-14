@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+    <title>Chụp mặt sau CCCD - P2P Lending</title>
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary-color: #2563eb; }
+        body { font-family: 'Inter', sans-serif; background: #000; }
+        .page__background { background: #000; }
+
+        .camera-overlay {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .camera-header {
+            padding: 40px 20px 20px;
+            text-align: center;
+            color: white;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+            z-index: 10;
+        }
+
+        .camera-title { font-size: 18px; font-weight: 600; margin: 0 0 8px; }
+        .camera-subtitle { font-size: 13px; opacity: 0.8; margin: 0; }
+
+        .viewfinder-container {
+            flex: 1;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .id-frame {
+            width: 85%;
+            aspect-ratio: 1.58;
+            border: 2px dashed rgba(255, 255, 255, 0.8);
+            border-radius: 12px;
+            position: relative;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .corner {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-color: var(--primary-color);
+            border-style: solid;
+        }
+        .tl { top: -2px; left: -2px; border-width: 4px 0 0 4px; border-radius: 4px 0 0 0; }
+        .tr { top: -2px; right: -2px; border-width: 4px 4px 0 0; border-radius: 0 4px 0 0; }
+        .bl { bottom: -2px; left: -2px; border-width: 0 0 4px 4px; border-radius: 0 0 0 4px; }
+        .br { bottom: -2px; right: -2px; border-width: 0 4px 4px 0; border-radius: 0 0 4px 0; }
+
+        .camera-controls {
+            padding: 30px;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+        }
+
+        .btn-capture {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: white;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .btn-capture::after {
+            content: '';
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px; height: 60px;
+            background: white;
+            border-radius: 50%;
+            border: 2px solid #000;
+        }
+
+        .btn-icon { color: white; background: none; border: none; font-size: 24px; }
+
+        .instruction-tag {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.6);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+    <ons-page>
+        <div class="camera-overlay">
+            <div class="camera-header">
+                <h2 class="camera-title">Chụp mặt sau CCCD</h2>
+                <p class="camera-subtitle">Đảm bảo thông tin rõ nét, không bị lóa sáng</p>
+            </div>
+
+            <div class="viewfinder-container">
+                <div class="id-frame">
+                    <div class="corner tl"></div>
+                    <div class="corner tr"></div>
+                    <div class="corner bl"></div>
+                    <div class="corner br"></div>
+                    <div class="instruction-tag">Mặt sau</div>
+                </div>
+            </div>
+
+            <div class="camera-controls">
+                <button class="btn-icon" onclick="history.back()">↩️</button>
+                <button class="btn-capture" onclick="captureImage()"></button>
+                <button class="btn-icon">⚡</button>
+            </div>
+        </div>
+    </ons-page>
+
+    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+    <script>
+        function captureImage() {
+            ons.notification.toast('Đã chụp!', { timeout: 500, animation: 'ascend' });
+            setTimeout(() => {
+                window.location.href = '11-ekyc-confirm.html';
+            }, 800);
+        }
+    </script>
+</body>
+</html>

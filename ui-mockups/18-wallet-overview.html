@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+    <title>Ví điện tử - P2P Lending</title>
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --bg-gray: #f3f4f6;
+            --text-primary: #1f2937;
+        }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-gray); }
+        .page__background { background: var(--bg-gray); }
+
+        .wallet-header {
+            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+            padding: 24px 20px 80px;
+            color: white;
+            border-bottom-left-radius: 24px;
+            border-bottom-right-radius: 24px;
+        }
+
+        .balance-card {
+            background: white;
+            margin: -60px 20px 20px;
+            padding: 20px;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        }
+
+        .balance-title { font-size: 13px; color: #6b7280; margin-bottom: 8px; }
+        .balance-amount { font-size: 28px; font-weight: 700; color: var(--text-primary); margin-bottom: 24px; }
+
+        .action-row {
+            display: flex;
+            gap: 12px;
+        }
+
+        .action-btn {
+            flex: 1;
+            padding: 12px;
+            border-radius: 12px;
+            border: none;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-deposit { background: #eff6ff; color: #2563eb; }
+        .btn-withdraw { background: #fef2f2; color: #dc2626; }
+
+        .sub-balances {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            padding: 0 20px 20px;
+        }
+
+        .sub-card {
+            background: white;
+            padding: 16px;
+            border-radius: 12px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        }
+
+        .sub-label { font-size: 12px; color: #6b7280; margin-bottom: 4px; }
+        .sub-val { font-size: 15px; font-weight: 600; color: var(--text-primary); }
+
+        .section-title {
+            padding: 0 20px;
+            margin-bottom: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .trans-item {
+            background: white;
+            padding: 16px;
+            border-bottom: 1px solid #f3f4f6;
+            display: flex;
+            align-items: center;
+        }
+
+        .trans-icon {
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            background: #f3f4f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <ons-page>
+        <ons-toolbar>
+            <div class="left"><ons-back-button>Quay lại</ons-back-button></div>
+            <div class="center">Ví của tôi</div>
+            <div class="right"><ons-button modifier="quiet" style="color: black;" onclick="window.location.href='22-wallet-bank-list.html'">🏦</ons-button></div>
+        </ons-toolbar>
+
+        <div class="content">
+            <div class="wallet-header">
+                <div style="opacity: 0.9;">Tổng tài sản</div>
+                <div style="font-size: 24px; font-weight: 700;">15.250.000đ</div>
+            </div>
+
+            <div class="balance-card">
+                <div class="balance-title">Số dư khả dụng</div>
+                <div class="balance-amount">5.250.000đ</div>
+                <div class="action-row">
+                    <button class="action-btn btn-deposit" onclick="window.location.href='19-wallet-deposit.html'">
+                        <span>⬇️</span> Nạp tiền
+                    </button>
+                    <button class="action-btn btn-withdraw" onclick="window.location.href='20-wallet-withdraw.html'">
+                        <span>⬆️</span> Rút tiền
+                    </button>
+                </div>
+            </div>
+
+            <div class="sub-balances">
+                <div class="sub-card">
+                    <div class="sub-label">Đang đầu tư</div>
+                    <div class="sub-val">10.000.000đ</div>
+                </div>
+                <div class="sub-card">
+                    <div class="sub-label">Chờ xử lý</div>
+                    <div class="sub-val">0đ</div>
+                </div>
+            </div>
+
+            <div class="section-title">
+                Giao dịch gần đây
+                <span style="font-size: 13px; color: var(--primary-color); font-weight: 500;" onclick="window.location.href='21-wallet-history.html'">Xem tất cả</span>
+            </div>
+
+            <div class="trans-list">
+                <div class="trans-item">
+                    <div class="trans-icon">⬇️</div>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px;">Nạp tiền vào ví</div>
+                        <div style="font-size: 12px; color: #6b7280;">10:30 - 14/01/2026</div>
+                    </div>
+                    <div style="color: #059669; font-weight: 600;">+5.000.000đ</div>
+                </div>
+                <div class="trans-item">
+                    <div class="trans-icon">🚀</div>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px;">Đầu tư gói #INV-001</div>
+                        <div style="font-size: 12px; color: #6b7280;">09:15 - 12/01/2026</div>
+                    </div>
+                    <div style="color: #dc2626; font-weight: 600;">-2.000.000đ</div>
+                </div>
+            </div>
+        </div>
+    </ons-page>
+    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+</body>
+</html>

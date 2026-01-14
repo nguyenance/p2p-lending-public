@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+    <title>Trang chủ (Người vay) - P2P Lending</title>
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --bg-gray: #f3f4f6;
+            --text-primary: #111827;
+        }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-gray); }
+        .page__background { background: var(--bg-gray); }
+
+        .home-header {
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            padding: 20px 20px 60px; /* Extra padding for overlap */
+            color: white;
+            border-bottom-left-radius: 24px;
+            border-bottom-right-radius: 24px;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+        }
+
+        .welcome-text { font-size: 14px; opacity: 0.9; }
+        .user-name { font-size: 20px; font-weight: 700; margin: 0; }
+
+        .notification-btn {
+            background: rgba(255,255,255,0.2);
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .badge {
+            position: absolute;
+            top: 8px; right: 8px;
+            width: 8px; height: 8px;
+            background: #ef4444;
+            border-radius: 50%;
+        }
+
+        .stats-card {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin: -40px 20px 20px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .stats-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+        .stats-label { font-size: 13px; color: #6b7280; }
+        .stats-value { font-size: 18px; font-weight: 700; color: var(--text-primary); }
+        .text-red { color: #dc2626; }
+
+        .action-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .action-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .action-icon {
+            width: 48px; height: 48px;
+            background: #eff6ff;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+        }
+
+        .action-label { font-size: 12px; font-weight: 500; color: #374151; }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin: 0 20px 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .see-all { font-size: 13px; color: var(--primary-color); font-weight: 500; }
+
+        .loan-products {
+            display: flex;
+            overflow-x: auto;
+            padding: 0 20px 20px;
+            gap: 16px;
+            scrollbar-width: none;
+        }
+
+        .loan-card {
+            min-width: 240px;
+            background: white;
+            border-radius: 12px;
+            padding: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+        }
+
+        .loan-icon { font-size: 24px; margin-bottom: 8px; }
+        .loan-name { font-weight: 600; margin-bottom: 4px; }
+        .loan-rate { font-size: 13px; color: #059669; font-weight: 500; }
+
+        .bottom-nav {
+            padding-top: 8px;
+            padding-bottom: 24px;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .tab-icon { font-size: 20px; margin-bottom: 2px; }
+    </style>
+</head>
+<body>
+    <ons-page>
+        <div class="content" style="padding-bottom: 60px;">
+            <!-- Header -->
+            <div class="home-header">
+                <div class="user-info">
+                    <div>
+                        <div class="welcome-text">Xin chào,</div>
+                        <h1 class="user-name">Nguyễn Văn A</h1>
+                    </div>
+                    <div class="notification-btn" onclick="window.location.href='17-notifications.html'">
+                        🔔
+                        <div class="badge"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Stats -->
+            <div class="stats-card">
+                <div class="stats-row">
+                    <div>
+                        <div class="stats-label">Dư nợ hiện tại</div>
+                        <div class="stats-value">15.000.000đ</div>
+                    </div>
+                    <div style="text-align: right;">
+                        <div class="stats-label">Đến hạn (05/02)</div>
+                        <div class="stats-value text-red">2.150.000đ</div>
+                    </div>
+                </div>
+                <ons-button modifier="large" style="border-radius: 8px;">Thanh toán ngay</ons-button>
+            </div>
+
+            <!-- Quick Actions -->
+            <div style="padding: 0 20px;">
+                <div class="action-grid">
+                    <div class="action-item" onclick="window.location.href='#'">
+                        <div class="action-icon">🔢</div>
+                        <span class="action-label">Tính lãi</span>
+                    </div>
+                    <div class="action-item">
+                        <div class="action-icon">📝</div>
+                        <span class="action-label">Hồ sơ</span>
+                    </div>
+                    <div class="action-item">
+                        <div class="action-icon">💳</div>
+                        <span class="action-label">Thẻ NH</span>
+                    </div>
+                    <div class="action-item">
+                        <div class="action-icon">🎧</div>
+                        <span class="action-label">Hỗ trợ</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Products -->
+            <div class="section-title">
+                Gói vay nổi bật
+                <span class="see-all">Xem tất cả</span>
+            </div>
+
+            <div class="loan-products">
+                <div class="loan-card" onclick="window.location.href='#'">
+                    <div class="loan-icon">🛍️</div>
+                    <div class="loan-name">Vay Tiêu Dùng</div>
+                    <div class="loan-rate">Lãi suất từ 15%/năm</div>
+                    <div style="font-size: 12px; color: #6b7280; margin-top: 4px;">Hạn mức đến 50 triệu</div>
+                </div>
+                <div class="loan-card">
+                    <div class="loan-icon">⚡</div>
+                    <div class="loan-name">Vay Nhanh</div>
+                    <div class="loan-rate">Giải ngân trong 2 giờ</div>
+                    <div style="font-size: 12px; color: #6b7280; margin-top: 4px;">Hạn mức đến 5 triệu</div>
+                </div>
+                <div class="loan-card">
+                    <div class="loan-icon">🎓</div>
+                    <div class="loan-name">Vay Sinh Viên</div>
+                    <div class="loan-rate">Ưu đãi lãi suất</div>
+                    <div style="font-size: 12px; color: #6b7280; margin-top: 4px;">Hỗ trợ học phí</div>
+                </div>
+            </div>
+
+            <!-- Recent Transactions -->
+            <div class="section-title">Giao dịch gần đây</div>
+            <ons-list modifier="inset">
+                <ons-list-item tappable>
+                    <div class="left">💸</div>
+                    <div class="center">
+                        <span class="list-item__title">Thanh toán khoản vay</span>
+                        <span class="list-item__subtitle">Hôm qua, 14:30</span>
+                    </div>
+                    <div class="right" style="color: #dc2626;">-2.150.000đ</div>
+                </ons-list-item>
+                <ons-list-item tappable>
+                    <div class="left">🏦</div>
+                    <div class="center">
+                        <span class="list-item__title">Giải ngân khoản vay</span>
+                        <span class="list-item__subtitle">10/01/2026</span>
+                    </div>
+                    <div class="right" style="color: #059669;">+15.000.000đ</div>
+                </ons-list-item>
+            </ons-list>
+        </div>
+
+        <ons-bottom-toolbar class="bottom-nav">
+            <div style="display: flex; justify-content: space-around; align-items: center; text-align: center; height: 100%;">
+                <div style="color: var(--primary-color);">
+                    <div class="tab-icon">🏠</div>
+                    <div style="font-size: 10px; font-weight: 600;">Trang chủ</div>
+                </div>
+                <div style="color: #9ca3af;">
+                    <div class="tab-icon">💰</div>
+                    <div style="font-size: 10px;">Ví</div>
+                </div>
+                <div style="color: #9ca3af;">
+                    <div class="tab-icon">📄</div>
+                    <div style="font-size: 10px;">Khoản vay</div>
+                </div>
+                <div style="color: #9ca3af;">
+                    <div class="tab-icon">👤</div>
+                    <div style="font-size: 10px;">Hồ sơ</div>
+                </div>
+            </div>
+        </ons-bottom-toolbar>
+    </ons-page>
+
+    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+</body>
+</html>

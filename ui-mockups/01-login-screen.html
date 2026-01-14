@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+    <title>Đăng nhập - P2P Lending</title>
+
+    <!-- Onsen UI CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --primary-dark: #1e40af;
+            --secondary-color: #10b981;
+            --error-color: #ef4444;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --bg-gray: #f9fafb;
+            --border-color: #e5e7eb;
+        }
+
+        * {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            box-sizing: border-box;
+        }
+
+        html {
+            height: 100%;
+            overflow-x: hidden;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100%;
+            height: auto;
+            overflow-x: hidden;
+        }
+
+        .page__background {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .login-container {
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        .logo-section {
+            text-align: center;
+            padding: 40px 0 24px;
+            animation: fadeInDown 0.6s ease-out;
+            flex-shrink: 0;
+        }
+
+        .logo {
+            width: 64px;
+            height: 64px;
+            background: white;
+            border-radius: 16px;
+            margin: 0 auto 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo-text {
+            font-size: 26px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .app-title {
+            color: white;
+            font-size: 24px;
+            font-weight: 700;
+            margin: 0 0 6px;
+        }
+
+        .app-subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 14px;
+            margin: 0;
+            font-weight: 400;
+        }
+
+        .form-card {
+            background: white;
+            border-radius: 20px;
+            padding: 24px 20px;
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+            animation: fadeInUp 0.6s ease-out 0.2s backwards;
+            flex-grow: 1;
+            flex-shrink: 0;
+        }
+
+        .form-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 0 0 6px;
+            text-align: center;
+        }
+
+        .form-subtitle {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin: 0 0 24px;
+            text-align: center;
+        }
+
+        .input-group {
+            margin-bottom: 16px;
+        }
+
+        .input-label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+            font-size: 18px;
+        }
+
+        .custom-input {
+            width: 100%;
+            padding: 12px 14px 12px 44px;
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            font-size: 15px;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+            appearance: none;
+            -webkit-appearance: none;
+        }
+
+        .custom-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 18px;
+            cursor: pointer;
+            padding: 4px;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .forgot-password {
+            text-align: right;
+            margin-top: -6px;
+            margin-bottom: 20px;
+        }
+
+        .forgot-password a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .login-button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+            transition: all 0.3s ease;
+            margin-bottom: 16px;
+            min-height: 48px;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .login-button:active {
+            transform: scale(0.98);
+            box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 16px 0;
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border-color);
+        }
+
+        .divider::before {
+            margin-right: 12px;
+        }
+
+        .divider::after {
+            margin-left: 12px;
+        }
+
+        .biometric-button {
+            width: 100%;
+            padding: 12px;
+            background: white;
+            color: var(--text-primary);
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            margin-bottom: 16px;
+            min-height: 48px;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .biometric-button:active {
+            background: var(--bg-gray);
+        }
+
+        .register-link {
+            text-align: center;
+            font-size: 14px;
+            color: white;
+            padding: 16px 0;
+            flex-shrink: 0;
+        }
+
+        .register-link a {
+            color: white;
+            text-decoration: underline;
+            font-weight: 600;
+        }
+
+        .footer-text {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 11px;
+            padding: 12px 0 20px;
+            animation: fadeIn 0.6s ease-out 0.4s backwards;
+            flex-shrink: 0;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Error state */
+        .input-error {
+            border-color: var(--error-color) !important;
+        }
+
+        .error-message {
+            color: var(--error-color);
+            font-size: 13px;
+            margin-top: 6px;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <ons-page>
+        <div class="login-container">
+            <div>
+                <!-- Logo Section -->
+                <div class="logo-section">
+                    <div class="logo">
+                        <div class="logo-text">P2P</div>
+                    </div>
+                    <h1 class="app-title">P2P Lending</h1>
+                    <p class="app-subtitle">Nền tảng cho vay ngang hàng minh bạch</p>
+                </div>
+
+                <!-- Form Card -->
+                <div class="form-card">
+                    <h2 class="form-title">Đăng nhập</h2>
+                    <p class="form-subtitle">Chào mừng bạn quay trở lại</p>
+
+                    <form id="loginForm">
+                        <!-- Phone Number Input -->
+                        <div class="input-group">
+                            <label class="input-label">Số điện thoại</label>
+                            <div class="input-wrapper">
+                                <span class="input-icon">📱</span>
+                                <input type="tel" class="custom-input" id="phoneInput" placeholder="0912 345 678"
+                                    maxlength="10" required>
+                            </div>
+                            <div class="error-message" id="phoneError">Số điện thoại không đúng định dạng</div>
+                        </div>
+
+                        <!-- Password Input -->
+                        <div class="input-group">
+                            <label class="input-label">Mật khẩu</label>
+                            <div class="input-wrapper">
+                                <span class="input-icon">🔒</span>
+                                <input type="password" class="custom-input" id="passwordInput"
+                                    placeholder="Nhập mật khẩu" required>
+                                <button type="button" class="password-toggle" id="passwordToggle">
+                                    👁️
+                                </button>
+                            </div>
+                            <div class="error-message" id="passwordError">Mật khẩu không được để trống</div>
+                        </div>
+
+                        <!-- Forgot Password -->
+                        <div class="forgot-password">
+                            <a href="#forgot-password">Quên mật khẩu?</a>
+                        </div>
+
+                        <!-- Login Button -->
+                        <button type="submit" class="login-button">
+                            Đăng nhập
+                        </button>
+
+                        <!-- Divider -->
+                        <div class="divider">hoặc</div>
+
+                        <!-- Biometric Login -->
+                        <button type="button" class="biometric-button" id="biometricButton">
+                            <span>🔐</span>
+                            <span>Đăng nhập bằng sinh trắc học</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Register Link -->
+            <div class="register-link">
+                Chưa có tài khoản? <a href="#register">Đăng ký ngay</a>
+            </div>
+
+            <!-- Footer -->
+            <div class="footer-text">
+                © 2026 P2P Lending Platform. Bảo mật & An toàn.
+            </div>
+        </div>
+    </ons-page>
+
+    <!-- Onsen UI JS -->
+    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+
+    <script>
+        // Phone number formatting
+        const phoneInput = document.getElementById('phoneInput');
+        phoneInput.addEventListener('input', function (e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 10) {
+                value = value.slice(0, 10);
+            }
+            e.target.value = value;
+        });
+
+        // Password toggle
+        const passwordInput = document.getElementById('passwordInput');
+        const passwordToggle = document.getElementById('passwordToggle');
+
+        passwordToggle.addEventListener('click', function () {
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                passwordToggle.textContent = '👁️‍🗨️';
+            } else {
+                passwordInput.type = 'password';
+                passwordToggle.textContent = '👁️';
+            }
+        });
+
+        // Form validation and submission
+        const loginForm = document.getElementById('loginForm');
+
+        loginForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const phone = phoneInput.value;
+            const password = passwordInput.value;
+            const phoneError = document.getElementById('phoneError');
+            const passwordError = document.getElementById('passwordError');
+
+            // Reset errors
+            phoneInput.classList.remove('input-error');
+            passwordInput.classList.remove('input-error');
+            phoneError.classList.remove('show');
+            passwordError.classList.remove('show');
+
+            let isValid = true;
+
+            // Validate phone number (Vietnamese format: 0xxx-xxx-xxx)
+            const phoneRegex = /^(0)(3|5|7|8|9)[0-9]{8}$/;
+            if (!phoneRegex.test(phone)) {
+                phoneInput.classList.add('input-error');
+                phoneError.classList.add('show');
+                isValid = false;
+            }
+
+            // Validate password
+            if (password.length === 0) {
+                passwordInput.classList.add('input-error');
+                passwordError.classList.add('show');
+                isValid = false;
+            }
+
+            if (isValid) {
+                // Show loading notification
+                ons.notification.toast('Đang đăng nhập...', {
+                    timeout: 2000,
+                    animation: 'fall'
+                });
+
+                // Simulate API call
+                setTimeout(() => {
+                    ons.notification.toast('Đăng nhập thành công!', {
+                        timeout: 2000,
+                        animation: 'fall'
+                    });
+
+                    // In production, navigate to dashboard
+                    // window.location.href = '/home/borrower';
+                }, 2000);
+            }
+        });
+
+        // Biometric login
+        const biometricButton = document.getElementById('biometricButton');
+        biometricButton.addEventListener('click', function () {
+            ons.notification.confirm({
+                message: 'Bạn có muốn đăng nhập bằng sinh trắc học?',
+                title: 'Xác nhận',
+                buttonLabels: ['Hủy', 'Xác nhận'],
+                callback: function (index) {
+                    if (index === 1) {
+                        ons.notification.toast('Đang xác thực sinh trắc học...', {
+                            timeout: 2000,
+                            animation: 'fall'
+                        });
+
+                        // Simulate biometric authentication
+                        setTimeout(() => {
+                            ons.notification.toast('Đăng nhập thành công!', {
+                                timeout: 2000,
+                                animation: 'fall'
+                            });
+                        }, 2000);
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

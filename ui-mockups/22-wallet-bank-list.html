@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+    <title>Tài khoản ngân hàng - P2P Lending</title>
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background: #f3f4f6; }
+        .page__background { background: #f3f4f6; }
+
+        .bank-card {
+            background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+            color: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin: 16px 20px;
+            position: relative;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .bank-name { font-weight: 700; font-size: 16px; margin-bottom: 20px; display: flex; align-items: center; gap: 8px;}
+        .account-number { font-family: monospace; font-size: 18px; letter-spacing: 2px; margin-bottom: 20px; }
+        .account-holder { font-size: 14px; text-transform: uppercase; opacity: 0.8; }
+
+        .default-badge {
+            position: absolute;
+            top: 20px; right: 20px;
+            background: rgba(255,255,255,0.2);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 600;
+        }
+
+        .add-card-btn {
+            margin: 20px;
+            border: 2px dashed #d1d5db;
+            border-radius: 12px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6b7280;
+            font-weight: 600;
+            cursor: pointer;
+            background: white;
+        }
+    </style>
+</head>
+<body>
+    <ons-page>
+        <ons-toolbar>
+            <div class="left"><ons-back-button>Quay lại</ons-back-button></div>
+            <div class="center">Tài khoản ngân hàng</div>
+        </ons-toolbar>
+
+        <div class="content">
+            <div class="bank-card">
+                <div class="default-badge">Mặc định</div>
+                <div class="bank-name">
+                    <span>🏦</span> Vietcombank
+                </div>
+                <div class="account-number">**** **** **** 9999</div>
+                <div class="account-holder">Nguyen Van A</div>
+            </div>
+
+            <div class="bank-card" style="background: linear-gradient(135deg, #059669 0%, #047857 100%);">
+                <div class="bank-name">
+                    <span>🏦</span> MB Bank
+                </div>
+                <div class="account-number">**** **** **** 1234</div>
+                <div class="account-holder">Nguyen Van A</div>
+            </div>
+
+            <div class="add-card-btn" onclick="window.location.href='23-wallet-add-bank.html'">
+                + Thêm tài khoản mới
+            </div>
+        </div>
+    </ons-page>
+    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+</body>
+</html>

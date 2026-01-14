@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+    <title>Trang chủ (Nhà đầu tư) - P2P Lending</title>
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary-color: #10b981; /* Green for Investor */
+            --bg-gray: #f3f4f6;
+            --text-primary: #111827;
+        }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-gray); }
+        .page__background { background: var(--bg-gray); }
+
+        .home-header {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            padding: 20px 20px 60px;
+            color: white;
+            border-bottom-left-radius: 24px;
+            border-bottom-right-radius: 24px;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+        }
+
+        .notification-btn {
+            background: rgba(255,255,255,0.2);
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .stats-card {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin: -40px 20px 20px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .balance-label { font-size: 13px; color: #6b7280; margin-bottom: 4px; }
+        .balance-value { font-size: 24px; font-weight: 700; color: var(--text-primary); margin-bottom: 20px; }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 20px;
+            padding-top: 16px;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .stat-item { text-align: center; }
+        .stat-value { font-size: 16px; font-weight: 600; color: var(--primary-color); }
+        .stat-desc { font-size: 12px; color: #6b7280; }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin: 0 20px 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .opp-card {
+            background: white;
+            margin: 0 20px 12px;
+            padding: 16px;
+            border-radius: 12px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+        }
+
+        .risk-badge {
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: white;
+            margin-right: 16px;
+            flex-shrink: 0;
+        }
+        .risk-a { background: #10b981; }
+        .risk-b { background: #f59e0b; }
+        .risk-c { background: #ef4444; }
+
+        .opp-info { flex: 1; }
+        .opp-rate { color: var(--primary-color); font-weight: 700; font-size: 16px; }
+        .opp-desc { font-size: 13px; color: #4b5563; }
+
+        .chart-container {
+            background: white;
+            margin: 0 20px 24px;
+            padding: 16px;
+            border-radius: 12px;
+            height: 200px;
+        }
+
+        .bottom-nav {
+            padding-top: 8px;
+            padding-bottom: 24px;
+            border-top: 1px solid #e5e7eb;
+        }
+    </style>
+</head>
+<body>
+    <ons-page>
+        <div class="content" style="padding-bottom: 60px;">
+            <!-- Header -->
+            <div class="home-header">
+                <div class="user-info">
+                    <div>
+                        <div style="font-size: 14px; opacity: 0.9;">Danh mục đầu tư</div>
+                        <h1 style="font-size: 20px; font-weight: 700; margin: 0;">Trần Thị B</h1>
+                    </div>
+                    <div class="notification-btn" onclick="window.location.href='17-notifications.html'">🔔</div>
+                </div>
+            </div>
+
+            <!-- Portfolio Stats -->
+            <div class="stats-card">
+                <div class="balance-label">Tổng tài sản</div>
+                <div class="balance-value">52.450.000đ</div>
+
+                <ons-button modifier="large" style="background: var(--primary-color); border-radius: 8px;">Đầu tư ngay</ons-button>
+
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-value">+12.5%</div>
+                        <div class="stat-desc">Lợi nhuận năm</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">8</div>
+                        <div class="stat-desc">Hợp đồng đang chạy</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Performance Chart -->
+            <div class="section-title">Hiệu quả đầu tư</div>
+            <div class="chart-container">
+                <canvas id="performanceChart"></canvas>
+            </div>
+
+            <!-- Opportunities -->
+            <div class="section-title">
+                Cơ hội mới
+                <span style="font-size: 13px; color: var(--primary-color);">Xem tất cả</span>
+            </div>
+
+            <div class="opp-card">
+                <div class="risk-badge risk-a">A</div>
+                <div class="opp-info">
+                    <div class="opp-rate">15% / năm</div>
+                    <div class="opp-desc">Vay tiêu dùng - 12 tháng</div>
+                    <div style="font-size: 11px; color: #9ca3af; margin-top: 4px;">Cần 20.000.000đ • Đã gọi 45%</div>
+                </div>
+                <ons-button modifier="outline" style="color: var(--primary-color); border-color: var(--primary-color);">Đầu tư</ons-button>
+            </div>
+
+            <div class="opp-card">
+                <div class="risk-badge risk-b">B</div>
+                <div class="opp-info">
+                    <div class="opp-rate">18% / năm</div>
+                    <div class="opp-desc">Kinh doanh Online - 6 tháng</div>
+                    <div style="font-size: 11px; color: #9ca3af; margin-top: 4px;">Cần 50.000.000đ • Đã gọi 12%</div>
+                </div>
+                <ons-button modifier="outline" style="color: var(--primary-color); border-color: var(--primary-color);">Đầu tư</ons-button>
+            </div>
+        </div>
+
+        <ons-bottom-toolbar class="bottom-nav">
+            <div style="display: flex; justify-content: space-around; align-items: center; text-align: center; height: 100%;">
+                <div style="color: var(--primary-color);">
+                    <div style="font-size: 20px; margin-bottom: 2px;">🏠</div>
+                    <div style="font-size: 10px; font-weight: 600;">Trang chủ</div>
+                </div>
+                <div style="color: #9ca3af;">
+                    <div style="font-size: 20px; margin-bottom: 2px;">📈</div>
+                    <div style="font-size: 10px;">Đầu tư</div>
+                </div>
+                <div style="color: #9ca3af;">
+                    <div style="font-size: 20px; margin-bottom: 2px;">💰</div>
+                    <div style="font-size: 10px;">Ví</div>
+                </div>
+                <div style="color: #9ca3af;">
+                    <div style="font-size: 20px; margin-bottom: 2px;">👤</div>
+                    <div style="font-size: 10px;">Hồ sơ</div>
+                </div>
+            </div>
+        </ons-bottom-toolbar>
+    </ons-page>
+
+    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+    <script>
+        document.addEventListener('init', function(event) {
+            const ctx = document.getElementById('performanceChart');
+            if(ctx) {
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: ['T9', 'T10', 'T11', 'T12', 'T1', 'HT'],
+                        datasets: [{
+                            label: 'Lợi nhuận',
+                            data: [12, 19, 3, 5, 2, 3],
+                            borderColor: '#10b981',
+                            tension: 0.4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { display: false } },
+                        scales: { y: { display: false }, x: { grid: { display: false } } }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
