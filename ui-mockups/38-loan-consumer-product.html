@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+    <title>Vay tiêu dùng - P2P Lending</title>
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background: #f3f4f6; }
+        .hero { background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); color: white; padding: 40px 20px; text-align: center; }
+        .feature-list { background: white; padding: 20px; margin-top: -20px; border-radius: 20px 20px 0 0; }
+        .feature-item { display: flex; gap: 12px; margin-bottom: 20px; }
+        .icon { width: 40px; height: 40px; background: #eff6ff; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #2563eb; }
+    </style>
+</head>
+<body>
+    <ons-page>
+        <ons-toolbar style="background: transparent; box-shadow: none;">
+            <div class="left"><ons-back-button style="color: white;">Quay lại</ons-back-button></div>
+        </ons-toolbar>
+        <div class="content">
+            <div class="hero">
+                <h1 style="margin: 0 0 8px;">Vay Tiêu Dùng</h1>
+                <p style="opacity: 0.9;">Giải pháp tài chính linh hoạt cho mọi nhu cầu</p>
+                <div style="font-size: 24px; font-weight: 700; margin-top: 20px;">Đến 50.000.000đ</div>
+            </div>
+            <div class="feature-list">
+                <div class="feature-item">
+                    <div class="icon">⚡</div>
+                    <div>
+                        <div style="font-weight: 600;">Duyệt nhanh</div>
+                        <div style="font-size: 13px; color: #6b7280;">Hồ sơ xử lý trong 24h</div>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="icon">📅</div>
+                    <div>
+                        <div style="font-weight: 600;">Kỳ hạn linh hoạt</div>
+                        <div style="font-size: 13px; color: #6b7280;">Từ 3 đến 36 tháng</div>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="icon">💰</div>
+                    <div>
+                        <div style="font-weight: 600;">Lãi suất cạnh tranh</div>
+                        <div style="font-size: 13px; color: #6b7280;">Chỉ từ 15%/năm</div>
+                    </div>
+                </div>
+                <ons-button modifier="large" onclick="window.location.href='31-loan-apply-consumer.html'">Đăng ký ngay</ons-button>
+            </div>
+        </div>
+    </ons-page>
+    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+</body>
+</html>

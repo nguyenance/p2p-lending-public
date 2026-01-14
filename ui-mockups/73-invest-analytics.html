@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+    <title>Phân tích đầu tư - P2P Lending</title>
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background: #f3f4f6; }
+        .chart-card { background: white; padding: 16px; margin: 12px 20px; border-radius: 12px; }
+        .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 0 20px 20px; }
+        .stat-box { background: white; padding: 16px; border-radius: 12px; }
+    </style>
+</head>
+<body>
+    <ons-page>
+        <ons-toolbar>
+            <div class="left"><ons-back-button>Quay lại</ons-back-button></div>
+            <div class="center">Hiệu quả đầu tư</div>
+        </ons-toolbar>
+        <div class="content">
+            <div class="chart-card">
+                <h3 style="margin-top: 0; font-size: 15px;">Tăng trưởng tài sản</h3>
+                <div style="height: 200px;">
+                    <canvas id="growthChart"></canvas>
+                </div>
+            </div>
+
+            <div class="stat-grid">
+                <div class="stat-box">
+                    <div style="font-size: 12px; color: #6b7280;">Lãi suất BQ</div>
+                    <div style="font-size: 18px; font-weight: 700; color: #10b981;">16.5%</div>
+                </div>
+                <div class="stat-box">
+                    <div style="font-size: 12px; color: #6b7280;">Tỷ lệ nợ xấu</div>
+                    <div style="font-size: 18px; font-weight: 700; color: #f59e0b;">0.5%</div>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <h3 style="margin-top: 0; font-size: 15px;">Phân bổ danh mục</h3>
+                <div style="height: 200px; display: flex; justify-content: center;">
+                    <canvas id="pieChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </ons-page>
+    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+    <script>
+        document.addEventListener('init', function() {
+            // Placeholder for chart initialization
+            // Real implementation would use Chart.js here
+        });
+    </script>
+</body>
+</html>

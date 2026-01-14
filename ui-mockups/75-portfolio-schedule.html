@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+    <title>Lịch trả nợ - P2P Lending</title>
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background: white; }
+        .schedule-list { padding: 0; }
+        .schedule-item { padding: 16px 20px; border-bottom: 1px solid #f3f4f6; display: flex; align-items: center; }
+        .date-box { width: 50px; text-align: center; margin-right: 16px; }
+        .day { font-size: 18px; font-weight: 700; color: #1f2937; }
+        .month { font-size: 12px; color: #6b7280; text-transform: uppercase; }
+        .status-dot { width: 8px; height: 8px; border-radius: 50%; background: #e5e7eb; margin-left: auto; }
+        .status-dot.paid { background: #10b981; }
+        .status-dot.due { background: #f59e0b; }
+    </style>
+</head>
+<body>
+    <ons-page>
+        <ons-toolbar>
+            <div class="left"><ons-back-button>Quay lại</ons-back-button></div>
+            <div class="center">Lịch trả nợ</div>
+        </ons-toolbar>
+        <div class="content">
+            <div class="schedule-list">
+                <div class="schedule-item">
+                    <div class="date-box">
+                        <div class="day">14</div>
+                        <div class="month">Th1</div>
+                    </div>
+                    <div>
+                        <div style="font-weight: 600;">Kỳ 1/12</div>
+                        <div style="font-size: 13px; color: #6b7280;">1.916.667đ</div>
+                    </div>
+                    <div class="status-dot paid"></div>
+                </div>
+                <div class="schedule-item" style="background: #fffbeb;">
+                    <div class="date-box">
+                        <div class="day">14</div>
+                        <div class="month">Th2</div>
+                    </div>
+                    <div>
+                        <div style="font-weight: 600;">Kỳ 2/12</div>
+                        <div style="font-size: 13px; color: #6b7280;">1.916.667đ</div>
+                    </div>
+                    <div class="status-dot due"></div>
+                </div>
+                <div class="schedule-item">
+                    <div class="date-box">
+                        <div class="day">14</div>
+                        <div class="month">Th3</div>
+                    </div>
+                    <div>
+                        <div style="font-weight: 600;">Kỳ 3/12</div>
+                        <div style="font-size: 13px; color: #6b7280;">1.916.667đ</div>
+                    </div>
+                    <div class="status-dot"></div>
+                </div>
+            </div>
+
+            <div style="padding: 20px;">
+                <ons-button modifier="outline" style="width: 100%; text-align: center;">⬇️ Tải lịch trả nợ (PDF)</ons-button>
+            </div>
+        </div>
+    </ons-page>
+    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+</body>
+</html>
