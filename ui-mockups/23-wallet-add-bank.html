@@ -66,7 +66,7 @@
                     <div class="verify-badge">✓ Khớp với tên đã xác thực eKYC</div>
                 </div>
 
-                <ons-button modifier="large" style="background: #2563eb; border-radius: 8px;">Liên kết tài khoản</ons-button>
+                <ons-button modifier="large" style="background: #2563eb; border-radius: 8px;" onclick="ons.notification.toast('Liên kết thành công', { timeout: 2000 }); setTimeout(() => window.location.href = '22-wallet-bank-list.html', 2000);">Liên kết tài khoản</ons-button>
             </div>
         </div>
     </ons-page>

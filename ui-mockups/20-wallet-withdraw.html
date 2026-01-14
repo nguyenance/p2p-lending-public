@@ -100,7 +100,7 @@
         </div>
 
         <div class="bottom-bar">
-            <ons-button modifier="large" style="background: #2563eb; border-radius: 8px;">Xác nhận rút tiền</ons-button>
+            <ons-button modifier="large" style="background: #2563eb; border-radius: 8px;" onclick="ons.notification.toast('Yêu cầu rút tiền thành công', { timeout: 2000 }); setTimeout(() => window.location.href = '18-wallet-overview.html', 2000);">Xác nhận rút tiền</ons-button>
         </div>
     </ons-page>
     <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>

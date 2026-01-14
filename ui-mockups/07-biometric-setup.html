@@ -278,11 +278,11 @@
 
                         setTimeout(() => {
                             ons.notification.alert({
-                                message: 'Sinh trắc học đã được kích hoạt thành công! Bạn có thể sử dụng để đăng nhập từ lần sau.',
+                                message: 'Sinh trắc học đã được kích hoạt thành công!',
                                 title: 'Thành công! 🎉',
                                 callback: function () {
-                                    // Navigate to dashboard
-                                    window.location.href = '01-login-screen.html';
+                                    // Navigate to eKYC
+                                    window.location.href = '08-ekyc-intro.html';
                                 }
                             });
                         }, 1500);
@@ -292,12 +292,8 @@
         });
 
         document.getElementById('skipBtn').addEventListener('click', function () {
-            ons.notification.toast('Bạn có thể kích hoạt sau trong Cài đặt', { timeout: 2000 });
-
-            setTimeout(() => {
-                // Navigate to dashboard
-                window.location.href = '01-login-screen.html';
-            }, 2000);
+            // Navigate to eKYC even if skipped
+            window.location.href = '08-ekyc-intro.html';
         });
     </script>
 </body>
