@@ -373,6 +373,17 @@
                             <div class="error-message" id="phoneError">Số điện thoại không đúng định dạng</div>
                         </div>
 
+                        <!-- Email Input -->
+                        <div class="input-group">
+                            <label class="input-label">Email</label>
+                            <div class="input-wrapper">
+                                <span class="input-icon">✉️</span>
+                                <input type="email" class="custom-input" id="emailInput" placeholder="email@example.com"
+                                    required>
+                            </div>
+                            <div class="error-message" id="emailError">Email không đúng định dạng</div>
+                        </div>
+
                         <!-- Terms & Conditions -->
                         <div class="checkbox-wrapper">
                             <input type="checkbox" class="custom-checkbox" id="termsCheckbox" required>
@@ -436,6 +447,7 @@
 
         // Form validation and submission
         const registerForm = document.getElementById('registerForm');
+        const emailInput = document.getElementById('emailInput');
         const termsCheckbox = document.getElementById('termsCheckbox');
         const registerButton = document.getElementById('registerButton');
 
@@ -455,17 +467,36 @@
             e.preventDefault();
 
             const phone = phoneInput.value;
+            const email = emailInput.value;
             const phoneError = document.getElementById('phoneError');
+            const emailError = document.getElementById('emailError');
 
             // Reset errors
             phoneInput.classList.remove('input-error');
+            emailInput.classList.remove('input-error');
             phoneError.classList.remove('show');
+            emailError.classList.remove('show');
+
+            let hasError = false;
 
             // Validate phone number (Vietnamese format: 0xxx-xxx-xxx)
             const phoneRegex = /^(0)(3|5|7|8|9)[0-9]{8}$/;
             if (!phoneRegex.test(phone)) {
                 phoneInput.classList.add('input-error');
                 phoneError.classList.add('show');
+                hasError = true;
+            }
+
+            // Validate email format
+            const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            if (!emailRegex.test(email)) {
+                emailInput.classList.add('input-error');
+                emailError.classList.add('show');
+                hasError = true;
+            }
+
+            // Stop if there are validation errors
+            if (hasError) {
                 return;
             }
 
@@ -486,13 +517,13 @@
 
             // Simulate API call
             setTimeout(() => {
-                ons.notification.toast('Mã OTP đã được gửi!', {
+                ons.notification.toast('Mã OTP đã được gửi đến email của bạn!', {
                     timeout: 2000,
                     animation: 'fall'
                 });
 
                 // In production, navigate to OTP verification screen
-                // window.location.href = '03-otp-verification.html?phone=' + phone;
+                // window.location.href = '03-otp-verification.html?phone=' + phone + '&email=' + email;
             }, 2000);
         });
     </script>
