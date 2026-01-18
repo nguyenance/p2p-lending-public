@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flow: Đăng ký & eKYC - P2P Lending</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #f9fafb; padding: 20px; }
+        .container { max-width: 800px; margin: 0 auto; background: white; padding: 32px; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        h1 { color: #1f2937; margin-bottom: 8px; font-size: 28px; }
+        .subtitle { color: #6b7280; margin-bottom: 32px; font-size: 14px; }
+        .flow-step { background: #f9fafb; border: 2px solid #e5e7eb; border-radius: 8px; padding: 20px; margin-bottom: 16px; cursor: pointer; transition: all 0.2s; }
+        .flow-step:hover { border-color: #2563eb; background: #eff6ff; }
+        .step-number { display: inline-block; width: 32px; height: 32px; background: #2563eb; color: white; border-radius: 50%; text-align: center; line-height: 32px; font-weight: 700; margin-right: 12px; }
+        .step-title { font-weight: 600; font-size: 16px; color: #1f2937; margin-bottom: 4px; }
+        .step-desc { font-size: 13px; color: #6b7280; margin-left: 44px; }
+        .back-link { display: inline-block; color: #2563eb; text-decoration: none; margin-bottom: 20px; font-size: 14px; }
+        .back-link:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-link">← Quay lại danh sách screens</a>
+        
+        <h1>🔐 Flow: Đăng ký & Xác thực eKYC</h1>
+        <div class="subtitle">User Journey: Người dùng mới đăng ký tài khoản và hoàn thành eKYC</div>
+
+        <div class="flow-step" onclick="window.location.href='../ui-mockups/00-splash-screen.html'">
+            <div class="step-number">1</div>
+            <div class="step-title">Splash Screen</div>
+            <div class="step-desc">Màn hình khởi động ứng dụng</div>
+        </div>
+
+        <div class="flow-step" onclick="window.location.href='../ui-mockups/05-welcome-screen.html'">
+            <div class="step-number">2</div>
+            <div class="step-title">Welcome Screen</div>
+            <div class="step-desc">Giới thiệu sản phẩm, value proposition</div>
+        </div>
+
+        <div class="flow-step" onclick="window.location.href='../ui-mockups/02-registration-screen.html'">
+            <div class="step-number">3</div>
+            <div class="step-title">Đăng ký số điện thoại</div>
+            <div class="step-desc">Nhập số điện thoại +84, chấp nhận điều khoản</div>
+        </div>
+
+        <div class="flow-step" onclick="window.location.href='../ui-mockups/03-otp-verification.html'">
+            <div class="step-number">4</div>
+            <div class="step-title">Xác thực OTP</div>
+            <div class="step-desc">Nhập mã 6 số, countdown 5 phút</div>
+        </div>
+
+        <div class="flow-step" onclick="window.location.href='../ui-mockups/04-create-password.html'">
+            <div class="step-number">5</div>
+            <div class="step-title">Tạo mật khẩu</div>
+            <div class="step-desc">Password strength indicator, min 8 ký tự</div>
+        </div>
+
+        <div class="flow-step" onclick="window.location.href='../ui-mockups/07-biometric-setup.html'">
+            <div class="step-number">6</div>
+            <div class="step-title">Thiết lập sinh trắc học (Optional)</div>
+            <div class="step-desc">FaceID/TouchID cho lần đăng nhập sau</div>
+        </div>
+
+        <div class="flow-step" onclick="window.location.href='../ui-mockups/08-ekyc-intro.html'">
+            <div class="step-number">7</div>
+            <div class="step-title">Giới thiệu eKYC</div>
+            <div class="step-desc">Hướng dẫn quy trình xác minh danh tính</div>
+        </div>
+
+        <div class="flow-step" onclick="window.location.href='../ui-mockups/09-ekyc-id-front.html'">
+            <div class="step-number">8</div>
+            <div class="step-title">Chụp CCCD mặt trước</div>
+            <div class="step-desc">Camera viewfinder với overlay guide</div>
+        </div>
+
+        <div class="flow-step" onclick="window.location.href='../ui-mockups/10-ekyc-id-back.html'">
+            <div class="step-number">9</div>
+            <div class="step-title">Chụp CCCD mặt sau</div>
+            <div class="step-desc">Tương tự mặt trước</div>
+        </div>
+
+        <div class="flow-step" onclick="window.location.href='../ui-mockups/11-ekyc-confirm.html'">
+            <div class="step-number">10</div>
+            <div class="step-title">Xác nhận thông tin OCR</div>
+            <div class="step-desc">Review dữ liệu trích xuất từ CCCD, cho phép sửa</div>
+        </div>
+
+        <div class="flow-step" onclick="window.location.href='../ui-mockups/12-ekyc-liveness.html'">
+            <div class="step-number">11</div>
+            <div class="step-title">Video Liveness Verification (P0)</div>
+            <div class="step-desc">Quay đầu trái/phải, nhấp nháy mắt, mỉm cười</div>
+        </div>
+
+        <div class="flow-step" onclick="window.location.href='../ui-mockups/13-ekyc-processing.html'">
+            <div class="step-number">12</div>
+            <div class="step-title">Xử lý eKYC</div>
+            <div class="step-desc">Loading animation, Face match score calculation</div>
+        </div>
+
+        <div class="flow-step" onclick="window.location.href='../ui-mockups/14-home-borrower.html'">
+            <div class="step-number">13</div>
+            <div class="step-title">✅ Dashboard (Người vay)</div>
+            <div class="step-desc">eKYC hoàn tất, vào trang chủ</div>
+        </div>
+    </div>
+</body>
+</html>
