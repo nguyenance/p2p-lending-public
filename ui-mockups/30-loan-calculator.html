@@ -1,24 +1,16 @@
 <!DOCTYPE html>
 <html lang="vi">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
     <title>Tính toán khoản vay - P2P Lending</title>
     <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
     <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background: #f3f4f6;
-        }
-
-        .page__background {
-            background: #f3f4f6;
-        }
+        body { font-family: 'Inter', sans-serif; background: #f3f4f6; }
+        .page__background { background: #f3f4f6; }
 
         .calculator-card {
             background: white;
@@ -35,17 +27,8 @@
             text-align: center;
         }
 
-        .result-label {
-            font-size: 13px;
-            opacity: 0.8;
-            margin-bottom: 8px;
-        }
-
-        .result-amount {
-            font-size: 28px;
-            font-weight: 700;
-            margin-bottom: 24px;
-        }
+        .result-label { font-size: 13px; opacity: 0.8; margin-bottom: 8px; }
+        .result-amount { font-size: 28px; font-weight: 700; margin-bottom: 24px; }
 
         .detail-row {
             display: flex;
@@ -53,19 +36,11 @@
             margin-bottom: 12px;
             font-size: 14px;
         }
+        .detail-row:last-child { margin-bottom: 0; }
 
-        .detail-row:last-child {
-            margin-bottom: 0;
-        }
-
-        .slider-val {
-            font-weight: 700;
-            color: #2563eb;
-            float: right;
-        }
+        .slider-val { font-weight: 700; color: #2563eb; float: right; }
     </style>
 </head>
-
 <body>
     <ons-page>
         <ons-toolbar>
@@ -75,9 +50,7 @@
 
         <div class="content">
             <div class="calculator-card">
-                <label
-                    style="font-size: 13px; font-weight: 600; color: #374151; margin-bottom: 12px; display: block;">Sản
-                    phẩm vay</label>
+                <label style="font-size: 13px; font-weight: 600; color: #374151; margin-bottom: 12px; display: block;">Sản phẩm vay</label>
                 <ons-select style="width: 100%; margin-bottom: 20px;">
                     <option value="consumer">Vay Tiêu Dùng</option>
                     <option value="business">Vay Kinh Doanh</option>
@@ -85,28 +58,13 @@
                 </ons-select>
 
                 <div style="margin-bottom: 24px;">
-                    <label style="font-size: 13px; color: #6b7280;">Số tiền vay <span class="slider-val"
-                            id="amountVal">10.000.000đ</span></label>
-                    <ons-range style="width: 100%;" min="1000000" max="50000000" step="1000000" value="10000000"
-                        oninput="updateVal()"></ons-range>
+                    <label style="font-size: 13px; color: #6b7280;">Số tiền vay <span class="slider-val" id="amountVal">10.000.000đ</span></label>
+                    <ons-range style="width: 100%;" min="1000000" max="50000000" step="1000000" value="10000000" oninput="updateVal()"></ons-range>
                 </div>
 
                 <div style="margin-bottom: 12px;">
-                    <label style="font-size: 13px; color: #6b7280;">Thời hạn vay <span class="slider-val"
-                            id="termVal">12 tháng</span></label>
-                    <ons-range style="width: 100%;" min="3" max="24" step="3" value="12"
-                        oninput="updateVal()"></ons-range>
-                </div>
-
-                <div style="margin-bottom: 16px; padding: 12px; background: #f9fafb; border-radius: 8px;">
-                    <label style="display: flex; align-items: center; gap: 8px;">
-                        <input type="checkbox" id="insuranceOption" style="width: 18px; height: 18px;">
-                        <span style="font-size: 13px; color: #374151; font-weight: 600;">Bảo hiểm khoản vay
-                            (1.5-2.0%)</span>
-                    </label>
-                    <div style="font-size: 12px; color: #6b7280; margin-left: 26px; margin-top: 4px;">
-                        💡 Bắt buộc cho khoản vay rủi ro cao. Bảo vệ bạn khi gặp sự cố.
-                    </div>
+                    <label style="font-size: 13px; color: #6b7280;">Thời hạn vay <span class="slider-val" id="termVal">12 tháng</span></label>
+                    <ons-range style="width: 100%;" min="3" max="36" step="3" value="12" oninput="updateVal()"></ons-range>
                 </div>
             </div>
 
@@ -120,28 +78,18 @@
                         <span>11.760.000đ</span>
                     </div>
                     <div class="detail-row">
-                        <span>Lãi suất (dự kiến)</span>
-                        <span>15-20%/năm</span>
-                    </div>
-                    <div class="detail-row">
-                        <span>Phí bảo hiểm</span>
-                        <span id="insuranceFee">200.000đ</span>
+                        <span>Lãi suất</span>
+                        <span>18%/năm</span>
                     </div>
                     <div class="detail-row">
                         <span>Phí dịch vụ</span>
                         <span>250.000đ</span>
                     </div>
-                    <div class="detail-row"
-                        style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 12px; margin-top: 12px;">
-                        <span style="font-weight: 700;">Số tiền thực nhận</span>
-                        <span style="font-weight: 700;" id="netAmount">9.550.000đ</span>
-                    </div>
                 </div>
             </div>
 
             <div style="padding: 0 20px 20px;">
-                <ons-button modifier="large" style="background: #2563eb; border-radius: 8px;"
-                    onclick="window.location.href='31-loan-apply-consumer.html'">Đăng ký vay ngay</ons-button>
+                <ons-button modifier="large" style="background: #2563eb; border-radius: 8px;" onclick="window.location.href='31-loan-apply-consumer.html'">Đăng ký vay ngay</ons-button>
             </div>
         </div>
     </ons-page>
@@ -152,5 +100,4 @@
         }
     </script>
 </body>
-
 </html>
