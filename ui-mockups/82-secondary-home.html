@@ -1,21 +1,47 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
     <title>Chợ thứ cấp (Tổng quan) - P2P Lending</title>
     <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
     <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; background: #f3f4f6; }
-        .hero { background: white; padding: 30px 20px; text-align: center; margin-bottom: 12px; }
-        .stats-grid { display: flex; justify-content: space-around; margin-top: 20px; }
-        .action-row { padding: 20px; display: flex; gap: 12px; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f3f4f6;
+        }
+
+        .hero {
+            background: white;
+            padding: 30px 20px;
+            text-align: center;
+            margin-bottom: 12px;
+        }
+
+        .stats-grid {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .action-row {
+            padding: 20px;
+            display: flex;
+            gap: 12px;
+        }
     </style>
 </head>
+
 <body>
     <ons-page>
+        <div
+            style="background: #fbbf24; color: #78350f; padding: 8px 16px; text-align: center; font-size: 13px; font-weight: 600;">
+            ⏳ Phase 2 - Sắp ra mắt
+        </div>
         <ons-toolbar>
             <div class="left"><ons-back-button>Quay lại</ons-back-button></div>
             <div class="center">Thị trường thứ cấp</div>
@@ -38,10 +64,12 @@
             </div>
 
             <div class="action-row">
-                <ons-button style="flex: 1; text-align: center; background: #2563eb;" onclick="window.location.href='69-invest-secondary-list.html'">
+                <ons-button style="flex: 1; text-align: center; background: #2563eb;"
+                    onclick="window.location.href='69-invest-secondary-list.html'">
                     🛒 Mua đầu tư
                 </ons-button>
-                <ons-button modifier="outline" style="flex: 1; text-align: center;" onclick="window.location.href='72-invest-my-listings.html'">
+                <ons-button modifier="outline" style="flex: 1; text-align: center;"
+                    onclick="window.location.href='72-invest-my-listings.html'">
                     🏷️ Bán đầu tư
                 </ons-button>
             </div>
@@ -59,4 +87,5 @@
     </ons-page>
     <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
 </body>
+
 </html>
