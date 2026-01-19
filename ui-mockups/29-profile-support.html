@@ -1,26 +1,51 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
     <title>Hỗ trợ - P2P Lending</title>
     <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
     <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; background: #f3f4f6; }
-        .page__background { background: #f3f4f6; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f3f4f6;
+        }
 
-        .search-box { padding: 16px; background: white; }
+        .page__background {
+            background: #f3f4f6;
+        }
+
+        .search-box {
+            padding: 16px;
+            background: white;
+        }
 
         .faq-item {
             background: white;
             padding: 16px;
             border-bottom: 1px solid #f3f4f6;
         }
-        .faq-question { font-weight: 600; margin-bottom: 4px; font-size: 14px; }
-        .faq-answer { color: #6b7280; font-size: 13px; display: none; margin-top: 8px; }
-        .faq-item.open .faq-answer { display: block; }
+
+        .faq-question {
+            font-weight: 600;
+            margin-bottom: 4px;
+            font-size: 14px;
+        }
+
+        .faq-answer {
+            color: #6b7280;
+            font-size: 13px;
+            display: none;
+            margin-top: 8px;
+        }
+
+        .faq-item.open .faq-answer {
+            display: block;
+        }
 
         .contact-options {
             display: grid;
@@ -36,13 +61,18 @@
             text-align: center;
         }
 
-        .contact-icon { font-size: 24px; margin-bottom: 8px; }
+        .contact-icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
     </style>
 </head>
+
 <body>
     <ons-page>
         <ons-toolbar>
-            <div class="left"><ons-back-button>Quay lại</ons-back-button></div>
+            <div class="left"><ons-back-button onclick="window.location.href='24-profile-overview.html'">Quay
+                    lại</ons-back-button></div>
             <div class="center">Trung tâm hỗ trợ</div>
         </ons-toolbar>
 
@@ -65,18 +95,22 @@
             <ons-list-header>Câu hỏi thường gặp</ons-list-header>
             <div class="faq-item" onclick="this.classList.toggle('open')">
                 <div class="faq-question">Làm sao để nạp tiền vào ví?</div>
-                <div class="faq-answer">Bạn có thể nạp tiền thông qua chuyển khoản ngân hàng, VNPay hoặc 9Pay tại mục Ví > Nạp tiền.</div>
+                <div class="faq-answer">Bạn có thể nạp tiền thông qua chuyển khoản ngân hàng, VNPay hoặc 9Pay tại mục Ví
+                    > Nạp tiền.</div>
             </div>
             <div class="faq-item" onclick="this.classList.toggle('open')">
                 <div class="faq-question">Thời gian giải ngân bao lâu?</div>
-                <div class="faq-answer">Thông thường khoản vay sẽ được giải ngân trong vòng 2-4 giờ làm việc sau khi hồ sơ được duyệt.</div>
+                <div class="faq-answer">Thông thường khoản vay sẽ được giải ngân trong vòng 2-4 giờ làm việc sau khi hồ
+                    sơ được duyệt.</div>
             </div>
             <div class="faq-item" onclick="this.classList.toggle('open')">
                 <div class="faq-question">Tôi quên mật khẩu phải làm sao?</div>
-                <div class="faq-answer">Vui lòng chọn "Quên mật khẩu" tại màn hình đăng nhập và làm theo hướng dẫn.</div>
+                <div class="faq-answer">Vui lòng chọn "Quên mật khẩu" tại màn hình đăng nhập và làm theo hướng dẫn.
+                </div>
             </div>
         </div>
     </ons-page>
     <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
 </body>
+
 </html>

@@ -502,7 +502,9 @@
                 if (otp === '123456') {
                     ons.notification.toast('Xác thực thành công!', { timeout: 2000 });
                     // Navigate to create password screen
-                    // window.location.href = '04-create-password.html';
+                    setTimeout(() => {
+                        window.location.href = '04-create-password.html';
+                    }, 2000);
                 } else {
                     errorMessage.classList.add('show');
                     otpInputs.forEach(input => {
