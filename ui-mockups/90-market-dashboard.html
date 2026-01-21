@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+    <title>Thị trường - P2P Lending</title>
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --bg-gray: #f3f4f6;
+            --text-primary: #1f2937;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-gray);
+        }
+
+        .page__background {
+            background: var(--bg-gray);
+        }
+
+        .balance-selector {
+            background: white;
+            padding: 20px;
+            margin-bottom: 16px;
+        }
+
+        .selector-title {
+            font-size: 13px;
+            color: #6b7280;
+            margin-bottom: 12px;
+        }
+
+        .balance-options {
+            display: flex;
+            gap: 12px;
+        }
+
+        .balance-opt {
+            flex: 1;
+            padding: 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .balance-opt.active {
+            border-color: var(--primary-color);
+            background: #eff6ff;
+        }
+
+        .balance-opt-label {
+            font-size: 12px;
+            color: #6b7280;
+            margin-bottom: 4px;
+        }
+
+        .balance-opt-amount {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .section-title {
+            padding: 20px 20px 12px;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            padding: 0 20px 20px;
+        }
+
+        .service-card {
+            background: white;
+            padding: 20px 12px;
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-icon {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .service-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .trans-list {
+            background: white;
+            margin-top: 16px;
+        }
+
+        .trans-item {
+            padding: 16px 20px;
+            border-bottom: 1px solid #f3f4f6;
+            display: flex;
+            align-items: center;
+        }
+
+        .trans-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #f3f4f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            font-size: 18px;
+        }
+
+        .promo-banner {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding: 16px 20px;
+            margin: 0 20px 16px;
+            border-radius: 12px;
+            color: white;
+        }
+
+        .promo-title {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .promo-desc {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+
+<body>
+    <ons-page>
+        <ons-toolbar>
+            <div class="left"><ons-back-button onclick="window.location.href='14-home-borrower.html'">Quay
+                    lại</ons-back-button></div>
+            <div class="center">Thị trường</div>
+            <div class="right"><ons-button modifier="quiet" style="color: black;">⚙️</ons-button></div>
+        </ons-toolbar>
+
+        <div class="content">
+            <div class="balance-selector">
+                <div class="selector-title">Nguồn thanh toán</div>
+                <div class="balance-options">
+                    <div class="balance-opt active" id="wallet-opt">
+                        <div class="balance-opt-label">Ví khả dụng</div>
+                        <div class="balance-opt-amount">5.250.000đ</div>
+                    </div>
+                    <div class="balance-opt" id="loan-opt">
+                        <div class="balance-opt-label">Hạn mức vay</div>
+                        <div class="balance-opt-amount">20.000.000đ</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="promo-banner">
+                <div class="promo-title">🎉 Giảm 10% hóa đơn điện!</div>
+                <div class="promo-desc">Thanh toán hóa đơn EVN hôm nay, nhận voucher 50.000đ</div>
+            </div>
+
+            <div class="section-title">Thanh toán hóa đơn</div>
+            <div class="service-grid">
+                <div class="service-card" onclick="window.location.href='91-market-payment.html?service=electric'">
+                    <div class="service-icon">⚡</div>
+                    <div class="service-label">Điện</div>
+                </div>
+                <div class="service-card" onclick="window.location.href='91-market-payment.html?service=water'">
+                    <div class="service-icon">💧</div>
+                    <div class="service-label">Nước</div>
+                </div>
+                <div class="service-card" onclick="window.location.href='91-market-payment.html?service=internet'">
+                    <div class="service-icon">📡</div>
+                    <div class="service-label">Internet</div>
+                </div>
+            </div>
+
+            <div class="section-title">Nạp điện thoại</div>
+            <div class="service-grid">
+                <div class="service-card" onclick="window.location.href='91-market-payment.html?service=viettel'">
+                    <div class="service-icon">📱</div>
+                    <div class="service-label">Viettel</div>
+                </div>
+                <div class="service-card" onclick="window.location.href='91-market-payment.html?service=mobifone'">
+                    <div class="service-icon">📱</div>
+                    <div class="service-label">Mobifone</div>
+                </div>
+                <div class="service-card" onclick="window.location.href='91-market-payment.html?service=vinaphone'">
+                    <div class="service-icon">📱</div>
+                    <div class="service-label">Vinaphone</div>
+                </div>
+            </div>
+
+            <div class="section-title">Mua sắm</div>
+            <div class="service-grid">
+                <div class="service-card">
+                    <div class="service-icon">🛒</div>
+                    <div class="service-label">Voucher</div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🎁</div>
+                    <div class="service-label">Deals</div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🏪</div>
+                    <div class="service-label">Siêu thị</div>
+                </div>
+            </div>
+
+            <div class="section-title">Giao dịch gần đây</div>
+            <div class="trans-list">
+                <div class="trans-item">
+                    <div class="trans-icon">⚡</div>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px;">Hóa đơn điện EVN</div>
+                        <div style="font-size: 12px; color: #6b7280;">10:30 - 15/01/2026</div>
+                    </div>
+                    <div style="color: #059669; font-weight: 600;">Hoàn tất</div>
+                </div>
+                <div class="trans-item">
+                    <div class="trans-icon">📱</div>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px;">Nạp Viettel 100.000đ</div>
+                        <div style="font-size: 12px; color: #6b7280;">09:15 - 14/01/2026</div>
+                    </div>
+                    <div style="color: #059669; font-weight: 600;">Hoàn tất</div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            document.getElementById('wallet-opt').addEventListener('click', function () {
+                this.classList.add('active');
+                document.getElementById('loan-opt').classList.remove('active');
+            });
+            document.getElementById('loan-opt').addEventListener('click', function () {
+                this.classList.add('active');
+                document.getElementById('wallet-opt').classList.remove('active');
+            });
+        </script>
+    </ons-page>
+    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+</body>
+
+</html>

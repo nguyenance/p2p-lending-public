@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+    <title>Xác nhận thanh toán - P2P Lending</title>
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --bg-gray: #f3f4f6;
+            --text-primary: #1f2937;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-gray);
+        }
+
+        .page__background {
+            background: var(--bg-gray);
+        }
+
+        .confirm-section {
+            background: white;
+            padding: 24px 20px;
+            margin-bottom: 16px;
+        }
+
+        .service-info {
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e5e7eb;
+            margin-bottom: 20px;
+        }
+
+        .service-icon {
+            font-size: 48px;
+            margin-bottom: 8px;
+        }
+
+        .service-name {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 16px;
+            font-size: 14px;
+        }
+
+        .detail-label {
+            color: #6b7280;
+        }
+
+        .detail-value {
+            font-weight: 600;
+            color: var(--text-primary);
+            text-align: right;
+        }
+
+        .amount-section {
+            background: #f9fafb;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .amount-label {
+            font-size: 13px;
+            color: #6b7280;
+            margin-bottom: 8px;
+        }
+
+        .amount-value {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .source-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            background: #eff6ff;
+            color: var(--primary-color);
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-top: 12px;
+        }
+
+        .loan-info {
+            background: #fef3c7;
+            padding: 16px;
+            border-radius: 8px;
+            margin-top: 16px;
+            border-left: 3px solid #f59e0b;
+        }
+
+        .loan-info-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: #92400e;
+            margin-bottom: 8px;
+        }
+
+        .loan-info-detail {
+            font-size: 12px;
+            color: #78350f;
+            margin: 4px 0;
+        }
+
+        .confirm-button {
+            width: 100%;
+            padding: 16px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            margin: 20px 0;
+        }
+
+        .warning-box {
+            background: #fef2f2;
+            padding: 12px;
+            border-radius: 8px;
+            border-left: 3px solid #dc2626;
+            font-size: 12px;
+            color: #991b1b;
+            margin-bottom: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <ons-page>
+        <ons-toolbar>
+            <div class="left"><ons-back-button onclick="window.location.href='91-market-payment.html'">Quay
+                    lại</ons-back-button></div>
+            <div class="center">Xác nhận thanh toán</div>
+        </ons-toolbar>
+
+        <div class="content">
+            <div class="confirm-section">
+                <div class="service-info">
+                    <div class="service-icon">⚡</div>
+                    <div class="service-name">Hóa đơn điện EVN</div>
+                </div>
+
+                <div class="detail-row">
+                    <span class="detail-label">Mã khách hàng</span>
+                    <span class="detail-value">PD01234567890</span>
+                </div>
+
+                <div class="detail-row">
+                    <span class="detail-label">Kỳ thanh toán</span>
+                    <span class="detail-value">Tháng 01/2026</span>
+                </div>
+
+                <div class="detail-row">
+                    <span class="detail-label">Số tiền</span>
+                    <span class="detail-value">456.000đ</span>
+                </div>
+
+                <div class="detail-row">
+                    <span class="detail-label">Phí dịch vụ</span>
+                    <span class="detail-value">0đ</span>
+                </div>
+
+                <div class="amount-section">
+                    <div class="amount-label">Tổng thanh toán</div>
+                    <div class="amount-value">456.000đ</div>
+                    <div class="source-badge">💳 Sử dụng hạn mức vay</div>
+                </div>
+
+                <div class="loan-info">
+                    <div class="loan-info-title">⚠️ Thông tin khoản vay</div>
+                    <div class="loan-info-detail">• Lãi suất: 18%/năm</div>
+                    <div class="loan-info-detail">• Ngày đáo hạn: 20/02/2026 (30 ngày)</div>
+                    <div class="loan-info-detail">• Tổng phải trả: 463.080đ (bao gồm lãi)</div>
+                </div>
+            </div>
+
+            <div style="padding: 0 20px;">
+                <div class="warning-box">
+                    ⚠️ Bạn xác nhận sử dụng hạn mức vay để thanh toán? Khoản vay sẽ được ghi nhận ngay sau khi hoàn tất.
+                </div>
+
+                <button class="confirm-button" onclick="handleConfirm()">
+                    Xác nhận thanh toán
+                </button>
+            </div>
+        </div>
+
+        <script>
+            function handleConfirm() {
+                alert('Thanh toán thành công!\n\nHóa đơn điện EVN đã được thanh toán.\nMã giao dịch: TXN-2026012001234\n\nVui lòng kiểm tra SMS xác nhận từ EVN.');
+                setTimeout(() => {
+                    window.location.href = '90-market-dashboard.html';
+                }, 500);
+            }
+        </script>
+    </ons-page>
+    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+    <title>Chuyển tiền - P2P Lending</title>
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --bg-gray: #f3f4f6;
+            --text-primary: #1f2937;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-gray);
+        }
+
+        .page__background {
+            background: var(--bg-gray);
+        }
+
+        .balance-card {
+            background: white;
+            padding: 20px;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .balance-label {
+            font-size: 13px;
+            color: #6b7280;
+            margin-bottom: 4px;
+        }
+
+        .balance-amount {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .form-section {
+            background: white;
+            padding: 20px;
+            margin-bottom: 16px;
+        }
+
+        .form-label {
+            font-size: 13px;
+            color: #6b7280;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 15px;
+            margin-bottom: 16px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .search-btn {
+            width: 100%;
+            padding: 12px;
+            background: #eff6ff;
+            color: var(--primary-color);
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 24px;
+        }
+
+        .recent-section {
+            margin-top: 24px;
+        }
+
+        .section-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+
+        .recent-item {
+            padding: 16px;
+            background: #f9fafb;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+
+        .recent-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            margin-right: 12px;
+        }
+
+        .recent-info {
+            flex: 1;
+        }
+
+        .recent-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .recent-phone {
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        .continue-btn {
+            width: 100%;
+            padding: 16px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 20px;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .continue-btn.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .fee-notice {
+            background: #ecfdf5;
+            padding: 12px;
+            border-radius: 8px;
+            border-left: 3px solid #10b981;
+            font-size: 12px;
+            color: #065f46;
+            margin-top: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <ons-page>
+        <ons-toolbar>
+            <div class="left"><ons-back-button onclick="window.location.href='18-wallet-overview.html'">Quay
+                    lại</ons-back-button></div>
+            <div class="center">Chuyển tiền</div>
+        </ons-toolbar>
+
+        <div class="content">
+            <div class="balance-card">
+                <div class="balance-label">Số dư khả dụng</div>
+                <div class="balance-amount">5.250.000đ</div>
+            </div>
+
+            <div class="form-section">
+                <div class="form-label">Số điện thoại / ID người nhận</div>
+                <input type="text" class="input-field" placeholder="Nhập số điện thoại hoặc ID" id="recipient-input">
+
+                <button class="search-btn" onclick="searchUser()">
+                    🔍 Tìm người nhận
+                </button>
+
+                <div id="found-user" style="display: none;">
+                    <div
+                        style="padding: 16px; background: #ecfdf5; border-radius: 8px; border-left: 3px solid #10b981; margin-bottom: 16px;">
+                        <div style="display: flex; align-items: center;">
+                            <div class="recent-avatar">N</div>
+                            <div>
+                                <div class="recent-name">Nguyễn Văn A</div>
+                                <div class="recent-phone">0987***234</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-label">Số tiền chuyển</div>
+                <input type="text" class="input-field" placeholder="Nhập số tiền" id="amount-input" disabled>
+
+                <div class="form-label">Lời nhắn (không bắt buộc)</div>
+                <input type="text" class="input-field" placeholder="Thêm lời nhắn" id="message-input" disabled>
+
+                <div class="fee-notice">
+                    💚 Miễn phí giao dịch chuyển tiền nội bộ trong hệ thống P2P Lending
+                </div>
+
+                <button class="continue-btn" id="continue-btn"
+                    onclick="window.location.href='94-wallet-transfer-confirm.html'">
+                    Tiếp tục
+                </button>
+
+                <div class="recent-section">
+                    <div class="section-title">Người nhận gần đây</div>
+                    <div class="recent-item" onclick="selectRecent('Trần Thị B', '0912***456')">
+                        <div class="recent-avatar">T</div>
+                        <div class="recent-info">
+                            <div class="recent-name">Trần Thị B</div>
+                            <div class="recent-phone">0912***456</div>
+                        </div>
+                    </div>
+                    <div class="recent-item" onclick="selectRecent('Lê Văn C', '0976***789')">
+                        <div class="recent-avatar">L</div>
+                        <div class="recent-info">
+                            <div class="recent-name">Lê Văn C</div>
+                            <div class="recent-phone">0976***789</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function searchUser() {
+                const input = document.getElementById('recipient-input').value;
+                if (input.length >= 10) {
+                    document.getElementById('found-user').style.display = 'block';
+                    document.getElementById('amount-input').disabled = false;
+                    document.getElementById('message-input').disabled = false;
+                    document.getElementById('continue-btn').classList.add('active');
+                } else {
+                    alert('Vui lòng nhập đúng số điện thoại (10 số)');
+                }
+            }
+
+            function selectRecent(name, phone) {
+                document.getElementById('recipient-input').value = phone.replace('***', '123');
+                searchUser();
+            }
+
+            document.getElementById('amount-input').addEventListener('input', function () {
+                if (this.value.length > 0) {
+                    document.getElementById('continue-btn').classList.add('active');
+                } else {
+                    document.getElementById('continue-btn').classList.remove('active');
+                }
+            });
+        </script>
+    </ons-page>
+    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+</body>
+
+</html>

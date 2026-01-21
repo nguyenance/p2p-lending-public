@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+    <title>Thanh toán dịch vụ - P2P Lending</title>
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --bg-gray: #f3f4f6;
+            --text-primary: #1f2937;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-gray);
+        }
+
+        .page__background {
+            background: var(--bg-gray);
+        }
+
+        .service-header {
+            background: white;
+            padding: 24px 20px;
+            text-align: center;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .service-icon {
+            font-size: 48px;
+            margin-bottom: 12px;
+        }
+
+        .service-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .form-section {
+            background: white;
+            padding: 20px;
+            margin-top: 16px;
+        }
+
+        .form-label {
+            font-size: 13px;
+            color: #6b7280;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 15px;
+            margin-bottom: 16px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .source-selector {
+            margin-top: 24px;
+        }
+
+        .source-title {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .source-options {
+            display: flex;
+            gap: 12px;
+        }
+
+        .source-opt {
+            flex: 1;
+            padding: 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .source-opt.active {
+            border-color: var(--primary-color);
+            background: #eff6ff;
+        }
+
+        .source-opt-icon {
+            font-size: 20px;
+            margin-bottom: 4px;
+        }
+
+        .source-opt-label {
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        .source-opt-amount {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-top: 4px;
+        }
+
+        .pay-button {
+            width: 100%;
+            padding: 16px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 24px;
+        }
+
+        .amount-preview {
+            background: #f9fafb;
+            padding: 16px;
+            border-radius: 8px;
+            margin-top: 16px;
+            border-left: 3px solid var(--primary-color);
+        }
+
+        .amount-preview-label {
+            font-size: 13px;
+            color: #6b7280;
+            margin-bottom: 4px;
+        }
+
+        .amount-preview-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+    </style>
+</head>
+
+<body>
+    <ons-page>
+        <ons-toolbar>
+            <div class="left"><ons-back-button onclick="window.location.href='90-market-dashboard.html'">Quay
+                    lại</ons-back-button></div>
+            <div class="center">Thanh toán</div>
+        </ons-toolbar>
+
+        <div class="content">
+            <div class="service-header">
+                <div class="service-icon">⚡</div>
+                <div class="service-title">Hóa đơn điện EVN</div>
+            </div>
+
+            <div class="form-section">
+                <div class="form-label">Mã khách hàng / Số hợp đồng</div>
+                <input type="text" class="input-field" placeholder="PD01234567890" id="contract-input">
+
+                <div class="form-label">Số tiền cần thanh toán</div>
+                <input type="text" class="input-field" placeholder="Nhập số tiền" id="amount-input" value="456.000">
+
+                <div class="amount-preview">
+                    <div class="amount-preview-label">Tổng thanh toán</div>
+                    <div class="amount-preview-value">456.000đ</div>
+                </div>
+
+                <div class="source-selector">
+                    <div class="source-title">Nguồn thanh toán</div>
+                    <div class="source-options">
+                        <div class="source-opt active" id="wallet-source">
+                            <div class="source-opt-icon">💰</div>
+                            <div class="source-opt-label">Ví khả dụng</div>
+                            <div class="source-opt-amount">5.250.000đ</div>
+                        </div>
+                        <div class="source-opt" id="loan-source">
+                            <div class="source-opt-icon">💳</div>
+                            <div class="source-opt-label">Hạn mức vay</div>
+                            <div class="source-opt-amount">20.000.000đ</div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="pay-button" onclick="window.location.href='92-market-confirm.html'">
+                    Thanh toán
+                </button>
+            </div>
+        </div>
+
+        <script>
+            document.getElementById('wallet-source').addEventListener('click', function () {
+                this.classList.add('active');
+                document.getElementById('loan-source').classList.remove('active');
+            });
+            document.getElementById('loan-source').addEventListener('click', function () {
+                this.classList.add('active');
+                document.getElementById('wallet-source').classList.remove('active');
+            });
+        </script>
+    </ons-page>
+    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+</body>
+
+</html>
