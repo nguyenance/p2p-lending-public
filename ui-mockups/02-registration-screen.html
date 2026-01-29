@@ -359,7 +359,7 @@
                 <!-- Form Card -->
                 <div class="form-card">
                     <h2 class="form-title">Đăng ký tài khoản</h2>
-                    <p class="form-subtitle">Chỉ mất 2 phút để hoàn tất</p>
+                    <p class="form-subtitle">Nhập thông tin để tạo tài khoản</p>
 
                     <form id="registerForm">
                         <!-- Phone Number Input -->
@@ -375,11 +375,11 @@
 
                         <!-- Email Input -->
                         <div class="input-group">
-                            <label class="input-label">Email</label>
+                            <label class="input-label">Email (Tùy chọn)</label>
                             <div class="input-wrapper">
                                 <span class="input-icon">✉️</span>
-                                <input type="email" class="custom-input" id="emailInput" placeholder="email@example.com"
-                                    required>
+                                <input type="email" class="custom-input" id="emailInput"
+                                    placeholder="email@example.com">
                             </div>
                             <div class="error-message" id="emailError">Email không đúng định dạng</div>
                         </div>
@@ -487,12 +487,14 @@
                 hasError = true;
             }
 
-            // Validate email format
-            const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-            if (!emailRegex.test(email)) {
-                emailInput.classList.add('input-error');
-                emailError.classList.add('show');
-                hasError = true;
+            // Validate email format (only if provided)
+            if (email) {
+                const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                if (!emailRegex.test(email)) {
+                    emailInput.classList.add('input-error');
+                    emailError.classList.add('show');
+                    hasError = true;
+                }
             }
 
             // Stop if there are validation errors
