@@ -362,6 +362,11 @@
                     <p class="form-subtitle">Chào mừng bạn quay trở lại</p>
 
                     <form id="loginForm">
+                        <!-- Generic Error Banner -->
+                        <div class="error-message" id="genericError" style="text-align: center; margin-bottom: 16px;">
+                            Số điện thoại hoặc mật khẩu không đúng
+                        </div>
+
                         <!-- Phone Number Input -->
                         <div class="input-group">
                             <label class="input-label">Số điện thoại</label>
@@ -411,7 +416,7 @@
 
             <!-- Register Link -->
             <div class="register-link">
-                Chưa có tài khoản? <a href="02-registration-screen.html">Đăng ký ngay</a>
+                Chưa có tài khoản? <a href="01a-role-selection.html">Đăng ký ngay</a>
             </div>
 
             <!-- Footer -->
@@ -459,12 +464,14 @@
             const password = passwordInput.value;
             const phoneError = document.getElementById('phoneError');
             const passwordError = document.getElementById('passwordError');
+            const genericError = document.getElementById('genericError');
 
             // Reset errors
             phoneInput.classList.remove('input-error');
             passwordInput.classList.remove('input-error');
             phoneError.classList.remove('show');
             passwordError.classList.remove('show');
+            genericError.classList.remove('show');
 
             let isValid = true;
 
@@ -492,6 +499,12 @@
 
                 // Simulate API call
                 setTimeout(() => {
+                    // Simulate Invalid Credentials (Scenario 2) if phone ends with '000'
+                    if (phone.endsWith('000')) {
+                        genericError.classList.add('show');
+                        return;
+                    }
+
                     ons.notification.toast('Đăng nhập thành công!', {
                         timeout: 2000,
                         animation: 'fall'
