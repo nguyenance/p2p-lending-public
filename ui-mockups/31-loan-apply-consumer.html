@@ -142,11 +142,29 @@
 
             <div style="padding: 0 20px 20px;">
                 <ons-button modifier="large" style="background: #2563eb; border-radius: 8px;"
-                    onclick="window.location.href='39-loan-consumer-docs.html'">Tiếp tục</ons-button>
+                    onclick="checkAgeEligibility()">Tiếp tục</ons-button>
             </div>
         </div>
     </ons-page>
+    <ons-dialog id="age-limit-dialog">
+        <div style="text-align: center; padding: 10px;">
+            <p style="font-weight: bold; margin-bottom: 20px;">Không đủ điều kiện vay</p>
+            <p>Chính sách cho vay tiêu dùng chỉ áp dụng cho khách hàng từ 18 đến 60 tuổi.</p>
+            <p>Quý khách vẫn có thể thực hiện các giao dịch khác trên nền tảng.</p>
+            <br>
+            <ons-button onclick="document.getElementById('age-limit-dialog').hide()">Đóng</ons-button>
+        </div>
+    </ons-dialog>
+
     <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+    <script>
+        // Simulate Age Check (Backend would return this status)
+        function checkAgeEligibility() {
+            // Logic: IF user.age > 60 THEN show dialog
+            // document.getElementById('age-limit-dialog').show();
+            window.location.href = '39-loan-consumer-docs.html';
+        }
+    </script>
 </body>
 
 </html>

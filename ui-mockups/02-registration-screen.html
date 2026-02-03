@@ -384,13 +384,22 @@
                             <div class="error-message" id="emailError">Email không đúng định dạng</div>
                         </div>
 
-                        <!-- Terms & Conditions -->
-                        <div class="checkbox-wrapper">
+                        <!-- Terms & Conditions (Mandatory) -->
+                        <div class="checkbox-wrapper" style="margin-bottom: 12px;">
                             <input type="checkbox" class="custom-checkbox" id="termsCheckbox" required>
                             <label class="checkbox-label" for="termsCheckbox">
-                                Tôi đã đọc và đồng ý với
+                                <span style="color: #ef4444; font-weight: bold;">[Bắt buộc]</span> Tôi đồng ý với
                                 <a href="#terms">Điều khoản sử dụng</a> và
-                                <a href="#privacy">Chính sách bảo mật</a> của P2P Lending
+                                <a href="#privacy">Chính sách bảo mật</a> & Xử lý dữ liệu.
+                            </label>
+                        </div>
+
+                        <!-- Marketing Consent (Optional) -->
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" class="custom-checkbox" id="marketingCheckbox">
+                            <label class="checkbox-label" for="marketingCheckbox">
+                                <span style="color: #6b7280; font-weight: bold;">[Tùy chọn]</span> Tôi đồng ý nhận thông
+                                tin khuyến mãi và quảng cáo từ P2P Lending.
                             </label>
                         </div>
 
