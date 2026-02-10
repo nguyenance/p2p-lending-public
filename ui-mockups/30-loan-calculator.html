@@ -154,11 +154,11 @@
         function updateVal() {
             // Update labels
             const amount = parseInt(document.querySelector('ons-range[min="1000000"]').value);
-            const term = parseInt(document.querySelector('ons-range[min="3"]').value);
+            const term = parseInt(document.getElementById('termSelect').value);
             const rate = parseFloat(document.getElementById('rateSlider').value);
 
             document.getElementById('amountVal').innerText = amount.toLocaleString('vi-VN') + 'đ';
-            document.getElementById('termVal').innerText = term + ' tháng';
+            // document.getElementById('termVal').innerText = term + ' tháng'; // Removed as select shows value
             document.getElementById('rateVal').innerText = rate + '%';
 
             // Show estimating status
