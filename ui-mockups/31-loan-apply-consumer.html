@@ -72,6 +72,113 @@
             margin-bottom: 16px;
         }
 
+        /* NEW: Interest Rate Slider */
+        .rate-slider-container {
+            margin: 16px 0;
+        }
+
+        .rate-slider {
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: linear-gradient(to right, #10b981 0%, #fbbf24 50%, #ef4444 100%);
+            outline: none;
+            -webkit-appearance: none;
+            margin: 12px 0;
+        }
+
+        .rate-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #2563eb;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .rate-range-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            color: #6b7280;
+            margin-top: 4px;
+        }
+
+        .rate-display {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2563eb;
+            text-align: center;
+            margin: 8px 0;
+        }
+
+        .rate-helper {
+            font-size: 11px;
+            color: #6b7280;
+            text-align: center;
+            line-height: 1.4;
+            padding: 0 12px;
+        }
+
+        /* NEW: Calculation Results Card */
+        .results-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 16px;
+        }
+
+        .result-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 13px;
+        }
+
+        .result-row.main {
+            font-size: 18px;
+            font-weight: 700;
+            padding-top: 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            margin-top: 12px;
+        }
+
+        /* NEW: Calculation Status Badge */
+        .calc-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+
+        .calc-status.estimating {
+            background: rgba(251, 191, 36, 0.2);
+            color: #f59e0b;
+        }
+
+        .calc-status.validated {
+            background: rgba(16, 185, 129, 0.2);
+            color: #10b981;
+        }
+
+        .disclaimer {
+            background: #fffbeb;
+            border-left: 4px solid #f59e0b;
+            padding: 12px;
+            margin: 16px 0;
+            border-radius: 6px;
+            font-size: 11px;
+            line-height: 1.5;
+            color: #92400e;
+        }
+
         .upload-box {
             border: 2px dashed #d1d5db;
             padding: 20px;
@@ -80,6 +187,23 @@
             color: #6b7280;
             font-size: 13px;
             margin-bottom: 16px;
+        }
+
+        /* Loading spinner */
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.6s linear infinite;
         }
     </style>
 </head>
@@ -104,64 +228,187 @@
                 <h3 style="margin-top: 0; font-size: 16px;">Thông tin khoản vay</h3>
 
                 <label class="input-label">Mục đích vay</label>
-                <ons-select style="width: 100%; margin-bottom: 16px;">
+                <ons-select id="loanPurpose" style="width: 100%; margin-bottom: 16px;">
                     <option value="shopping">Mua sắm tiêu dùng</option>
                     <option value="medical">Khám chữa bệnh</option>
                     <option value="travel">Du lịch</option>
                     <option value="repair">Sửa chữa nhà cửa</option>
+                    <option value="education">Giáo dục</option>
+                    <option value="other">Khác</option>
                 </ons-select>
 
                 <label class="input-label">Số tiền đề nghị (VNĐ)</label>
-                <input type="number" class="text-input" value="10000000">
+                <input type="number" id="loanAmount" class="text-input" value="50000000" min="5000000" max="50000000"
+                    step="1000000" onchange="calculateLoan()">
 
                 <label class="input-label">Thời hạn (Tháng)</label>
-                <ons-select style="width: 100%; margin-bottom: 16px;">
+                <ons-select id="loanTerm" style="width: 100%; margin-bottom: 16px;" onchange="calculateLoan()">
+                    <option value="3">3 tháng</option>
                     <option value="6">6 tháng</option>
+                    <option value="9">9 tháng</option>
                     <option value="12" selected>12 tháng</option>
+                    <option value="18">18 tháng</option>
                     <option value="24">24 tháng</option>
                 </ons-select>
+
+                <!-- NEW: Interest Rate Selector -->
+                <div class="rate-slider-container">
+                    <label class="input-label">Lãi suất đề xuất</label>
+                    <div class="rate-display" id="rateDisplay">18.0%</div>
+                    <input type="range" class="rate-slider" id="rateSlider" min="12" max="24" step="0.5" value="18"
+                        oninput="updateRate()">
+                    <div class="rate-range-labels">
+                        <span>12%/năm</span>
+                        <span>24%/năm</span>
+                    </div>
+                    <div class="rate-helper">
+                        <strong style="color: #10b981;">Thấp hơn:</strong> Chi phí ít nhưng ghép vốn chậm hơn<br>
+                        <strong style="color: #ef4444;">Cao hơn:</strong> Được duyệt nhanh hơn
+                    </div>
+                </div>
+
+                <!-- NEW: Calculation Results -->
+                <div class="results-card">
+                    <div class="result-row">
+                        <span>Trả hàng tháng
+                            <span class="calc-status estimating" id="calcStatus">
+                                <span class="spinner"></span> Tạm tính
+                            </span>
+                        </span>
+                        <strong id="monthlyPayment">4.822.917 ₫</strong>
+                    </div>
+                    <div class="result-row">
+                        <span>Phí dịch vụ (3%)</span>
+                        <span id="serviceFee">1.500.000 ₫</span>
+                    </div>
+                    <div class="result-row">
+                        <span>Tổng lãi</span>
+                        <span id="totalInterest">7.875.000 ₫</span>
+                    </div>
+                    <div class="result-row main">
+                        <span>Tổng thanh toán</span>
+                        <strong id="totalRepayment">57.875.000 ₫</strong>
+                    </div>
+                </div>
+
+                <!-- NEW: Disclaimer -->
+                <div class="disclaimer">
+                    <strong>📌 Lưu ý:</strong> Lãi suất bạn chọn là mức đề xuất. Lãi suất cuối cùng có thể thay đổi
+                    (12-24%) tùy theo:
+                    <ul style="margin: 8px 0 0 16px; padding: 0;">
+                        <li>Kết quả thẩm định tín dụng</li>
+                        <li>Điều kiện thị trường nhà đầu tư</li>
+                    </ul>
+                    Chúng tôi sẽ thông báo lãi suất chính xác trước khi ký hợp đồng.
+                </div>
             </div>
 
             <div class="form-section">
-                <h3 style="margin-top: 0; font-size: 16px;">Thông tin thu nhập</h3>
-                <label class="input-label">Nghề nghiệp hiện tại</label>
-                <input type="text" class="text-input" placeholder="Ví dụ: Nhân viên văn phòng">
+                <h3 style="margin-top: 0; font-size: 16px;">Thông tin cá nhân</h3>
 
-                <label class="input-label">Tên công ty</label>
-                <input type="text" class="text-input">
+                <label class="input-label">Tình trạng hôn nhân</label>
+                <ons-select style="width: 100%; margin-bottom: 16px;">
+                    <option value="">Chọn tình trạng</option>
+                    <option value="single">Độc thân</option>
+                    <option value="married">Đã kết hôn</option>
+                    <option value="divorced">Ly hôn</option>
+                    <option value="widowed">Góa</option>
+                </ons-select>
+
+                <label class="input-label">Nơi cư trú hiện tại</label>
+                <ons-select style="width: 100%; margin-bottom: 16px;">
+                    <option value="same">Giống địa chỉ CMND/CCCD</option>
+                    <option value="different">Địa chỉ khác</option>
+                </ons-select>
+
+                <label class="input-label">Nghề nghiệp</label>
+                <ons-select style="width: 100%; margin-bottom: 16px;">
+                    <option value="">Chọn nghề nghiệp</option>
+                    <option value="salaried">Nhân viên văn phòng</option>
+                    <option value="self_employed">Tự kinh doanh</option>
+                    <option value="freelance">Freelancer</option>
+                    <option value="student">Sinh viên</option>
+                    <option value="retired">Nghỉ hưu</option>
+                </ons-select>
 
                 <label class="input-label">Thu nhập hàng tháng (VNĐ)</label>
-                <input type="number" class="text-input">
+                <input type="number" class="text-input" placeholder="Tối thiểu 5.000.000 VNĐ">
 
-                <label class="input-label">Minh chứng thu nhập (Sao kê/Bảng lương)</label>
-                <div class="upload-box">
-                    <div>📁</div>
-                    <div>Nhấn để tải lên ảnh hoặc PDF</div>
+                <label class="input-label">Tên công ty (Autocomplete)</label>
+                <input type="text" class="text-input" placeholder="Nhập tên công ty...">
+                <div style="font-size: 11px; color: #6b7280; margin-top: -12px; margin-bottom: 16px;">
+                    💡 Không tìm thấy? Nhập tên đầy đủ
                 </div>
             </div>
 
             <div style="padding: 0 20px 20px;">
                 <ons-button modifier="large" style="background: #2563eb; border-radius: 8px;"
-                    onclick="checkAgeEligibility()">Tiếp tục</ons-button>
+                    onclick="proceedToDocuments()">Tiếp tục</ons-button>
             </div>
         </div>
     </ons-page>
-    <ons-dialog id="age-limit-dialog">
-        <div style="text-align: center; padding: 10px;">
-            <p style="font-weight: bold; margin-bottom: 20px;">Không đủ điều kiện vay</p>
-            <p>Chính sách cho vay tiêu dùng chỉ áp dụng cho khách hàng từ 18 đến 60 tuổi.</p>
-            <p>Quý khách vẫn có thể thực hiện các giao dịch khác trên nền tảng.</p>
-            <br>
-            <ons-button onclick="document.getElementById('age-limit-dialog').hide()">Đóng</ons-button>
-        </div>
-    </ons-dialog>
 
     <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
     <script>
-        // Simulate Age Check (Backend would return this status)
-        function checkAgeEligibility() {
-            // Logic: IF user.age > 60 THEN show dialog
-            // document.getElementById('age-limit-dialog').show();
+        let debounceTimer;
+
+        // Update rate display when slider changes
+        function updateRate() {
+            const rate = document.getElementById('rateSlider').value;
+            document.getElementById('rateDisplay').innerText = rate + '%';
+
+            // Show estimating status
+            const status = document.getElementById('calcStatus');
+            status.className = 'calc-status estimating';
+            status.innerHTML = '<span class="spinner"></span> Tạm tính';
+
+            // Debounce calculation (500ms)
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(() => {
+                calculateLoan();
+            }, 500);
+        }
+
+        // Calculate loan (Frontend instant + Backend validation simulation)
+        function calculateLoan() {
+            const amount = parseFloat(document.getElementById('loanAmount').value);
+            const term = parseInt(document.getElementById('loanTerm').value);
+            const rate = parseFloat(document.getElementById('rateSlider').value);
+
+            // Frontend instant calculation
+            const monthlyRate = rate / 12 / 100;
+            const numerator = monthlyRate * Math.pow(1 + monthlyRate, term);
+            const denominator = Math.pow(1 + monthlyRate, term) - 1;
+            const monthlyPayment = amount * (numerator / denominator);
+
+            const serviceFee = amount * 0.03;
+            const totalRepayment = monthlyPayment * term;
+            const totalInterest = totalRepayment - amount - serviceFee;
+
+            // Update UI with client-side calculation
+            document.getElementById('monthlyPayment').innerText = formatMoney(monthlyPayment);
+            document.getElementById('serviceFee').innerText = formatMoney(serviceFee);
+            document.getElementById('totalInterest').innerText = formatMoney(totalInterest);
+            document.getElementById('totalRepayment').innerText = formatMoney(totalRepayment);
+
+            // Simulate server validation after 800ms
+            setTimeout(() => {
+                const status = document.getElementById('calcStatus');
+                status.className = 'calc-status validated';
+                status.innerHTML = '✅ Đã xác nhận';
+            }, 800);
+        }
+
+        // Format money to Vietnamese style
+        function formatMoney(amount) {
+            return Math.round(amount).toLocaleString('vi-VN') + ' ₫';
+        }
+
+        // Initialize on load
+        calculateLoan();
+
+        function proceedToDocuments() {
+            // Validate required fields here
             window.location.href = '39-loan-consumer-docs.html';
         }
     </script>
