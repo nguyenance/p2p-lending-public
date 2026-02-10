@@ -97,40 +97,109 @@
                             id="termVal">12 tháng</span></label>
                     <ons-range style="width: 100%;" min="3" max="36" step="3" value="12"
                         oninput="updateVal()"></ons-range>
-                </div>
-            </div>
-
-            <div class="result-card">
-                <div class="result-label">Trả hàng tháng (dự kiến)</div>
-                <div class="result-amount">980.000đ</div>
-
-                <div style="background: rgba(255,255,255,0.1); padding: 16px; border-radius: 12px;">
-                    <div class="detail-row">
-                        <span>Gốc + Lãi</span>
-                        <span>11.760.000đ</span>
+                    <div style="margin-bottom: 24px;">
+                        <label style="font-size: 13px; color: #6b7280;">Lãi suất đề xuất <span class="slider-val"
+                                id="rateVal">18.0%</span>/năm</label>
+                        <input type="range" id="rateSlider"
+                            style="width: 100%; height: 6px; border-radius: 4px; background: linear-gradient(to right, #10b981, #fbbf24, #ef4444); -webkit-appearance: none;"
+                            min="12" max="24" step="0.5" value="18" oninput="updateVal()">
+                        <div
+                            style="display: flex; justify-content: space-between; font-size: 11px; color: #6b7280; margin-top: 4px;">
+                            <span>12% (Ưu đãi)</span>
+                            <span>24% (Dễ duyệt)</span>
+                        </div>
                     </div>
-                    <div class="detail-row">
-                        <span>Lãi suất</span>
-                        <span>18%/năm</span>
-                    </div>
-                    <div class="detail-row">
-                        <span>Phí dịch vụ</span>
-                        <span>250.000đ</span>
+
+                    <div
+                        style="background: #fffbeb; border-left: 3px solid #f59e0b; padding: 10px; font-size: 12px; color: #92400e; margin-bottom: 20px;">
+                        📌 Lãi suất này là mức đề xuất. Lãi suất thực tế sẽ được xác định sau khi thẩm định tín dụng.
                     </div>
                 </div>
-            </div>
 
-            <div style="padding: 0 20px 20px;">
-                <ons-button modifier="large" style="background: #2563eb; border-radius: 8px;"
-                    onclick="window.location.href='31-loan-apply-consumer.html'">Đăng ký vay ngay</ons-button>
+                <div class="result-card">
+                    <div class="result-label">
+                        Trả hàng tháng (dự kiến)
+                        <span id="calcStatus"
+                            style="display:inline-block; font-size:10px; background:rgba(255,255,255,0.2); padding:2px 6px; border-radius:8px; margin-left:4px;">⏳
+                            Tạm tính</span>
+                    </div>
+                    <div class="result-amount" id="monthlyPayment">4.822.917₫</div>
+
+                    <div style="background: rgba(255,255,255,0.1); padding: 16px; border-radius: 12px;">
+                        <div class="detail-row">
+                            <span>Gốc + Lãi</span>
+                            <span id="totalRepayment">57.875.000đ</span>
+                        </div>
+                        <div class="detail-row">
+                            <span>Tổng lãi</span>
+                            <span id="totalInterest">7.875.000đ</span>
+                        </div>
+                        <div class="detail-row">
+                            <span>Phí dịch vụ</span>
+                            <span id="serviceFee">1.500.000đ</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="padding: 0 20px 20px;">
+                    <ons-button modifier="large" style="background: #2563eb; border-radius: 8px;"
+                        onclick="window.location.href='31-loan-apply-consumer.html'">Đăng ký vay ngay</ons-button>
+                </div>
             </div>
-        </div>
     </ons-page>
     <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
     <script>
+        let debounceTimer;
+
         function updateVal() {
-            // Logic to update slider values text would go here
+            // Update labels
+            const amount = parseInt(document.querySelector('ons-range[min="1000000"]').value);
+            const term = parseInt(document.querySelector('ons-range[min="3"]').value);
+            const rate = parseFloat(document.getElementById('rateSlider').value);
+
+            document.getElementById('amountVal').innerText = amount.toLocaleString('vi-VN') + 'đ';
+            document.getElementById('termVal').innerText = term + ' tháng';
+            document.getElementById('rateVal').innerText = rate + '%';
+
+            // Show estimating status
+            const status = document.getElementById('calcStatus');
+            status.innerHTML = '⏳ Tạm tính';
+            status.style.background = 'rgba(251, 191, 36, 0.3)';
+            status.style.color = '#fffbeb';
+
+            // Debounce calculation
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(() => {
+                calculate(amount, term, rate);
+            }, 500);
         }
+
+        function calculate(amount, term, rate) {
+            // EMI Formula
+            const monthlyRate = rate / 12 / 100;
+            const numerator = monthlyRate * Math.pow(1 + monthlyRate, term);
+            const denominator = Math.pow(1 + monthlyRate, term) - 1;
+            const monthlyPayment = amount * (numerator / denominator);
+
+            const serviceFee = amount * 0.03;
+            const totalRepayment = monthlyPayment * term;
+            const totalInterest = totalRepayment - amount - serviceFee;
+
+            // Update UI
+            document.getElementById('monthlyPayment').innerText = Math.round(monthlyPayment).toLocaleString('vi-VN') + 'đ';
+            document.getElementById('totalRepayment').innerText = Math.round(totalRepayment).toLocaleString('vi-VN') + 'đ';
+            document.getElementById('totalInterest').innerText = Math.round(totalInterest).toLocaleString('vi-VN') + 'đ';
+            document.getElementById('serviceFee').innerText = Math.round(serviceFee).toLocaleString('vi-VN') + 'đ';
+
+            // Show validated status
+            const status = document.getElementById('calcStatus');
+            status.innerHTML = '✅ Đã xác nhận';
+            status.style.background = 'rgba(16, 185, 129, 0.3)';
+            status.style.color = 'white';
+        }
+
+        // Initialize
+        updateVal();
     </script>
 </body>
 
