@@ -72,56 +72,6 @@
             margin-bottom: 16px;
         }
 
-        /* NEW: Interest Rate Slider */
-        .rate-slider-container {
-            margin: 16px 0;
-        }
-
-        .rate-slider {
-            width: 100%;
-            height: 8px;
-            border-radius: 4px;
-            background: linear-gradient(to right, #10b981 0%, #fbbf24 50%, #ef4444 100%);
-            outline: none;
-            -webkit-appearance: none;
-            margin: 12px 0;
-        }
-
-        .rate-slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            background: #2563eb;
-            cursor: pointer;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        .rate-range-labels {
-            display: flex;
-            justify-content: space-between;
-            font-size: 11px;
-            color: #6b7280;
-            margin-top: 4px;
-        }
-
-        .rate-display {
-            font-size: 24px;
-            font-weight: 700;
-            color: #2563eb;
-            text-align: center;
-            margin: 8px 0;
-        }
-
-        .rate-helper {
-            font-size: 11px;
-            color: #6b7280;
-            text-align: center;
-            line-height: 1.4;
-            padding: 0 12px;
-        }
-
         /* NEW: Calculation Results Card */
         .results-card {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -251,19 +201,20 @@
                     <option value="24">24 tháng</option>
                 </ons-select>
 
-                <!-- NEW: Interest Rate Selector -->
-                <div class="rate-slider-container">
-                    <label class="input-label">Lãi suất đề xuất</label>
-                    <div class="rate-display" id="rateDisplay">18.0%</div>
-                    <input type="range" class="rate-slider" id="rateSlider" min="12" max="24" step="0.5" value="18"
-                        oninput="updateRate()">
-                    <div class="rate-range-labels">
-                        <span>12%/năm</span>
-                        <span>24%/năm</span>
+                <!-- UPDATED: Interest Rate Input (Manual) -->
+                <div class="rate-input-container" style="margin: 16px 0;">
+                    <label class="input-label">Lãi suất đề xuất (%/năm)</label>
+                    <div style="display: flex; gap: 12px; align-items: center;">
+                        <input type="number" id="interestRate" class="text-input" value="18.0" min="1.0" max="20.0"
+                            step="0.1" style="margin-bottom: 0; font-weight: bold; color: #2563eb;"
+                            onchange="validateAndCalculateRate()">
+                        <span style="font-weight: 600; color: #374151;">%</span>
                     </div>
-                    <div class="rate-helper">
-                        <strong style="color: #10b981;">Thấp hơn:</strong> Chi phí ít nhưng ghép vốn chậm hơn<br>
-                        <strong style="color: #ef4444;">Cao hơn:</strong> Được duyệt nhanh hơn
+                    <div class="rate-helper" style="text-align: left; margin-top: 8px; padding: 0;">
+                        <span style="color: #6b7280; font-size: 11px;">Nhập từ 1.0% đến 20.0%</span>
+                    </div>
+                    <div id="rateError" style="color: #ef4444; font-size: 12px; margin-top: 4px; display: none;">
+                        Lãi suất phải từ 1.0% đến 20.0%
                     </div>
                 </div>
 
@@ -293,13 +244,8 @@
 
                 <!-- NEW: Disclaimer -->
                 <div class="disclaimer">
-                    <strong>📌 Lưu ý:</strong> Lãi suất bạn chọn là mức đề xuất. Lãi suất cuối cùng có thể thay đổi
-                    (12-24%) tùy theo:
-                    <ul style="margin: 8px 0 0 16px; padding: 0;">
-                        <li>Kết quả thẩm định tín dụng</li>
-                        <li>Điều kiện thị trường nhà đầu tư</li>
-                    </ul>
-                    Chúng tôi sẽ thông báo lãi suất chính xác trước khi ký hợp đồng.
+                    <strong>📌 Lưu ý:</strong> Lãi suất bạn nhập là mức đề xuất. Lãi suất cuối cùng sẽ được quyết định
+                    dựa trên hồ sơ tín dụng của bạn (ngưỡng trần 20%/năm theo quy định).
                 </div>
             </div>
 
@@ -336,8 +282,28 @@
 
                 <label class="input-label">Tên công ty (Autocomplete)</label>
                 <input type="text" class="text-input" placeholder="Nhập tên công ty...">
+
+                <!-- NEW FIELDS START -->
+                <div style="display: flex; gap: 12px;">
+                    <div style="flex: 1;">
+                        <label class="input-label">Thâm niên tại cty (Tháng)</label>
+                        <input type="number" class="text-input" placeholder="VD: 12">
+                    </div>
+                    <div style="flex: 1;">
+                        <label class="input-label">Tổng thâm niên (Tháng)</label>
+                        <input type="number" class="text-input" placeholder="VD: 36">
+                    </div>
+                </div>
+
+                <label class="input-label">Chi phí sinh hoạt hàng tháng (VNĐ)</label>
+                <input type="number" class="text-input" placeholder="VD: 3.000.000">
+
+                <label class="input-label">Khoản trả nợ hàng tháng khác (nếu có)</label>
+                <input type="number" class="text-input" placeholder="VD: 2.000.000">
+                <!-- NEW FIELDS END -->
+
                 <div style="font-size: 11px; color: #6b7280; margin-top: -12px; margin-bottom: 16px;">
-                    💡 Không tìm thấy? Nhập tên đầy đủ
+                    💡 Thông tin chính xác giúp tăng tỷ lệ duyệt vay.
                 </div>
             </div>
 
@@ -352,28 +318,35 @@
     <script>
         let debounceTimer;
 
-        // Update rate display when slider changes
-        function updateRate() {
-            const rate = document.getElementById('rateSlider').value;
-            document.getElementById('rateDisplay').innerText = rate + '%';
-
-            // Show estimating status
-            const status = document.getElementById('calcStatus');
-            status.className = 'calc-status estimating';
-            status.innerHTML = '<span class="spinner"></span> Tạm tính';
-
-            // Debounce calculation (500ms)
-            clearTimeout(debounceTimer);
-            debounceTimer = setTimeout(() => {
-                calculateLoan();
-            }, 500);
+        function validateAndCalculateRate() {
+            const result = calculateLoan();
+            if (!result) {
+                // Error handling UI is done nicely in calculateLoan logic if needed, 
+                // but here we just trigger it.
+            }
         }
 
         // Calculate loan (Frontend instant + Backend validation simulation)
         function calculateLoan() {
             const amount = parseFloat(document.getElementById('loanAmount').value);
             const term = parseInt(document.getElementById('loanTerm').value);
-            const rate = parseFloat(document.getElementById('rateSlider').value);
+            let rateInput = document.getElementById('interestRate');
+            let rate = parseFloat(rateInput.value);
+
+            const rateError = document.getElementById('rateError');
+
+            // Validation
+            if (isNaN(rate) || rate < 1.0 || rate > 20.0) {
+                rateError.style.display = 'block';
+                return false;
+            } else {
+                rateError.style.display = 'none';
+            }
+
+            // Show estimating status
+            const status = document.getElementById('calcStatus');
+            status.className = 'calc-status estimating';
+            status.innerHTML = '<span class="spinner"></span> Tạm tính';
 
             // Frontend instant calculation
             const monthlyRate = rate / 12 / 100;
@@ -391,12 +364,15 @@
             document.getElementById('totalInterest').innerText = formatMoney(totalInterest);
             document.getElementById('totalRepayment').innerText = formatMoney(totalRepayment);
 
-            // Simulate server validation after 800ms
-            setTimeout(() => {
+            // Simulate server validation after 500ms debounce
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(() => {
                 const status = document.getElementById('calcStatus');
                 status.className = 'calc-status validated';
                 status.innerHTML = '✅ Đã xác nhận';
-            }, 800);
+            }, 500);
+
+            return true;
         }
 
         // Format money to Vietnamese style
@@ -409,7 +385,12 @@
 
         function proceedToDocuments() {
             // Validate required fields here
-            window.location.href = '39-loan-consumer-docs.html';
+            const rateValid = calculateLoan();
+            if (rateValid) {
+                window.location.href = '39-loan-consumer-docs.html';
+            } else {
+                ons.notification.alert('Vui lòng kiểm tra lại lãi suất nhập vào (1-20%)');
+            }
         }
     </script>
 </body>
