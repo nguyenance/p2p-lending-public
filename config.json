@@ -1,0 +1,60 @@
+{
+    "api": {
+        "baseUrlDevWeb": "http://localhost:8080/api/v1",
+        "baseUrlDevAndroid": "http://10.0.2.2:8080/api/v1",
+        "baseUrlStaging": "http://34.133.33.33:8080/api/v1",
+        "baseUrlProd": "https://api.p2plending.vn/api/v1"
+    },
+    "network": {
+        "connectionTimeoutSec": 120,
+        "receiveTimeoutSec": 120,
+        "sendTimeoutSec": 120,
+        "maxRetryAttempts": 3,
+        "retryDelaySec": 1
+    },
+    "auth": {
+        "accessTokenExpirySec": 3600,
+        "refreshTokenExpirySec": 86400
+    },
+    "app": {
+        "name": "P2P Lending",
+        "version": "1.0.0",
+        "buildNumber": 1,
+        "environment": "dev"
+    },
+    "features": {
+        "biometricAuth": true,
+        "faceId": true,
+        "fingerprint": true,
+        "rememberMe": true,
+        "offlineMode": false
+    },
+    "security": {
+        "sslPinningEnabled": false
+    },
+    "loanProductLimits": {
+        "consumerLoanMin": 5000000.0,
+        "consumerLoanMax": 50000000.0,
+        "quickCashMin": 500000.0,
+        "quickCashMax": 5000000.0,
+        "ecommerceLoanMin": 10000000.0,
+        "ecommerceLoanMax": 200000000.0,
+        "consumerLoanMinTerm": 3,
+        "consumerLoanMaxTerm": 24
+    },
+    "validation": {
+        "otpLength": 6,
+        "otpExpirySec": 300,
+        "passwordMinLength": 8,
+        "phoneRegex": "^0\\d{9}$"
+    },
+    "pagination": {
+        "pageSize": 20
+    },
+    "logging": {
+        "logLevel": "debug",
+        "logNetworkRequests": true,
+        "logNetworkResponses": true,
+        "logSensitiveData": false
+    }
+}
